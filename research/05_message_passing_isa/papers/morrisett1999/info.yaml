@@ -1,0 +1,15 @@
+author: Morrisett, Greg and Walker, David and Crary, Karl and Glew, Neal
+doi: 10.1145/319301.319345
+files:
+- morrisett99.pdf
+journal: ACM Transactions on Programming Languages and Systems
+number: '3'
+pages: 527--568
+papis_id: 5bb3fe4adc21f732c6daec4e50b87909
+ref: morrisett1999
+tags: typed-assembly, type-systems, compiler
+time-added: 2026-08-21-00:14:02
+title: From System F to Typed Assembly Language
+type: article
+volume: '21'
+year: '1999'

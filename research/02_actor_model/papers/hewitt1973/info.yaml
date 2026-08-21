@@ -1,0 +1,12 @@
+author: Hewitt, Carl and Bishop, Peter and Steiger, Richard
+booktitle: Proceedings of the 3rd IJCAI
+files:
+- hewitt73.pdf
+pages: 235--245
+papis_id: 05dac18ec9089c6627067dc17266f05d
+ref: hewitt1973
+tags: actor-model, concurrency
+time-added: 2026-08-21-00:11:13
+title: A Universal Modular ACTOR Formalism for Artificial Intelligence
+type: inproceedings
+year: '1973'

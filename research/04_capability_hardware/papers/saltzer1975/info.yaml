@@ -1,0 +1,15 @@
+author: Saltzer, Jerome H. and Schroeder, Michael D.
+doi: 10.1109/PROC.1975.9939
+files:
+- saltzer1975.pdf
+journal: Proceedings of the IEEE
+number: '9'
+pages: 1278--1308
+papis_id: d22e570ce9dafb98e58a088559e929ec
+ref: saltzer1975
+tags: protection, security, capabilities
+time-added: 2026-08-21-00:12:53
+title: The Protection of Information in Computer Systems
+type: article
+volume: '63'
+year: '1975'

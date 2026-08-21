@@ -1,0 +1,16 @@
+author: Backus, John
+doi: 10.1145/359576.359579
+files:
+- backus1978.pdf
+journal: Communications of the ACM
+number: '8'
+pages: 613--641
+papis_id: 3fbd82b3e42b200020be9da9376083e0
+ref: backus1978
+tags: functional-programming, von-neumann, turing-award
+time-added: 2026-08-21-00:09:41
+title: Can Programming Be Liberated from the von Neumann Style? A Functional Style
+  and Its Algebra of Programs
+type: article
+volume: '21'
+year: '1978'

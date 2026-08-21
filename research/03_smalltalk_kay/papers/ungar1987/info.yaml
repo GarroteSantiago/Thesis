@@ -1,0 +1,14 @@
+author: Ungar, David and Smith, Randall B.
+booktitle: Conference Proceedings on Object-Oriented Programming Systems, Languages
+  and Applications (OOPSLA)
+doi: 10.1145/38765.38828
+files:
+- ungar87.pdf
+pages: 227--242
+papis_id: 29f5a5af8ef16bc89b968f3db3022895
+ref: ungar1987
+tags: object-oriented, self-language, prototypes
+time-added: 2026-08-21-00:12:11
+title: 'Self: The Power of Simplicity'
+type: inproceedings
+year: '1987'
