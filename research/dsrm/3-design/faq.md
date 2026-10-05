@@ -12,11 +12,12 @@
 - A *prototype*. Each build–test loop is a *build–evaluate cycle* [2].
 
 **Can I go back to design without redoing everything?**
-- Yes. Design → evaluation → design is a valid loop on its own.
-- Re-check only the steps that depend on what you changed (see the dependency rule in `README.md`).
+- Yes. Evaluation → design is one of Peffers' iteration arcs [3].
+- Re-check the later steps that used the old design (see "Re-check after iterating" in `../README.md`).
 
 ---
 
 ## References
 1. Binkert et al. (2011). *The gem5 Simulator*. Association for Computing Machinery Special Interest Group on Computer Architecture, Computer Architecture News 39(2).
 2. Hevner, March, Park, Ram (2004). *Design Science in Information Systems Research*. Management Information Systems Quarterly 28(1).
+3. Peffers et al. (2007). *A Design Science Research Methodology for Information Systems Research*. Journal of Management Information Systems 24(3).

@@ -13,9 +13,13 @@
 - Draft a chapter when its source file is stable enough that a week passes without big edits.
 
 **What does a normal week look like?**
-- Monday–Tuesday: read 3–5 papers and fill the matrix.
+- Monday–Tuesday: read 3–5 papers.
 - Wednesday–Thursday: design or code.
 - Friday: write 1–2 pages.
+
+**Which contribution type is mine?**
+- Probably *exaptation*: actors and messages are mature in languages and networks, and you move them to operating systems and hardware [1].
+- *Invention* if you argue the solution itself is new, not only the domain [1].
 
 **Is there a model paper for how to report results?**
 - Smith's cache survey is a clear example of reporting a design with its measurements and limits [2].
