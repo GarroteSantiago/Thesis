@@ -15,11 +15,11 @@ Standard layout for presenting design science work, from Gregor and Hevner [1]:
 ## Chapter tracker
 | Chapter | Built from | Draft status | Last synced with source file |
 |---|---|---|---|
-| 1 Problem | `1-problem.md` | `[todo/draft/stable]` | `[date or commit]` |
-| 2 Objectives | `2-objectives.md` | `[ ]` | `[ ]` |
-| 3 Review | `3-literature.md` | `[ ]` | `[ ]` |
-| 4 Design | `4-design.md` | `[ ]` | `[ ]` |
-| 5 Evaluation | `5-evaluation.md` | `[ ]` | `[ ]` |
+| 1 Problem | `1-problem/step.md` | `[todo/draft/stable]` | `[date or commit]` |
+| 2 Objectives | `2-objectives/step.md` | `[ ]` | `[ ]` |
+| 3 Review | `3-literature/step.md` | `[ ]` | `[ ]` |
+| 4 Design | `4-design/step.md` | `[ ]` | `[ ]` |
+| 5 Evaluation | `5-evaluation/step.md` | `[ ]` | `[ ]` |
 
 If a source file changed after the "last synced" date, the chapter is stale.
 

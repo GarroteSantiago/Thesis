@@ -27,7 +27,7 @@
 **What is a proof of concept, and where does it go?**
 - A small working demo showing an idea is possible. It does not prove the idea is good or complete.
 - Sorting:
-  - someone else built it → a matrix row (`3-literature.md`);
+  - someone else built it → a matrix row (`3-literature/step.md`);
   - you built it and it answers a question → this results log;
   - it answers no question → exploration notes.
 

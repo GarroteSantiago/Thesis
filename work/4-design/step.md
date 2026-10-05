@@ -1,6 +1,6 @@
 # Step 4 — Design and develop (Chapter 4)
 
-> **Needs:** `2-objectives.md`, and `3-literature.md` for the gap · **Feeds:** 5 · **If changed, re-check:** 5
+> **Needs:** `2-objectives/step.md`, and `3-literature/step.md` for the gap · **Feeds:** 5 · **If changed, re-check:** 5
 
 > Build the cheapest layer first. Each layer must pass before the next.
 

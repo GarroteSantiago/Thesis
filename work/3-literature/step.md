@@ -1,6 +1,6 @@
 # Step 3 — Literature review (Chapter 3)
 
-> **Needs:** `2-objectives.md` (matrix columns) · **Feeds:** 4 (the gap), and RQ-H in 1 · **If changed, re-check:** 4
+> **Needs:** `2-objectives/step.md` (matrix columns) · **Feeds:** 4 (the gap), and RQ-H in 1 · **If changed, re-check:** 4
 
 ## 3.1 Search log (snowballing [1])
 - Starting papers (5–10): `[ ]`

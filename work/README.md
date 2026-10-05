@@ -5,12 +5,12 @@ One design problem, filled in passes. Each step lives in its own file because ea
 ## Files
 | File | Step | Changes |
 |---|---|---|
-| `1-problem.md` | Identify the problem | Rarely |
-| `2-objectives.md` | Define objectives | Rarely |
-| `3-literature.md` | Literature review + concept matrix | Every reading session |
-| `4-design.md` | Design and develop | Every experiment |
-| `5-evaluation.md` | Evidence, results log, threats | Every experiment |
-| `6-communicate.md` | Chapter outline and drafting | When chapters move |
+| `1-problem/` | Identify the problem | Rarely |
+| `2-objectives/` | Define objectives | Rarely |
+| `3-literature/` | Literature review + concept matrix | Every reading session |
+| `4-design/` | Design and develop | Every experiment |
+| `5-evaluation/` | Evidence, results log, threats | Every experiment |
+| `6-communicate/` | Chapter outline and drafting | When chapters move |
 
 ## Chain
 **Observation → Questions → Objectives → Evidence → Matrix columns → Experiments**
@@ -33,9 +33,9 @@ A step can run any time its inputs exist, even rough ones [3][4].
 - **ID rule:** IDs (RQ1, O1, …) link the files. Never rename one; retire it and create a new one.
 
 ## Sorting rule for any demo or result
-1. Someone else built it → row in the matrix (`3-literature.md`).
-2. I built it and it answers a question → results log (`5-evaluation.md`).
-3. I built it and it answers no question → exploration notes. If it reveals a new question, go back to `1-problem.md`.
+1. Someone else built it → row in the matrix (`3-literature/step.md`).
+2. I built it and it answers a question → results log (`5-evaluation/step.md`).
+3. I built it and it answers no question → exploration notes. If it reveals a new question, go back to `1-problem/step.md`.
 
 ---
 

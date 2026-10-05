@@ -1,6 +1,6 @@
 # Step 2 — Define objectives (Chapter 2)
 
-> **Needs:** `1-problem.md` · **Feeds:** 3 (matrix columns), 4, 5 · **If changed, re-check:** 3, 5
+> **Needs:** `1-problem/step.md` · **Feeds:** 3 (matrix columns), 4, 5 · **If changed, re-check:** 3, 5
 
 > Rule: *Property + Test + Pass condition*.
 > - Feasibility questions → binary objectives (pass or fail).

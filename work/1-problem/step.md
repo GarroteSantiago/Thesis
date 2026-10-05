@@ -1,6 +1,6 @@
 # Step 1 — Identify the problem (Chapter 1)
 
-> **Needs:** nothing · **Feeds:** `2-objectives.md` · **If changed, re-check:** 2, 3, 5
+> **Needs:** nothing · **Feeds:** `2-objectives/step.md` · **If changed, re-check:** 2, 3, 5
 
 ## 1.1 Observation as a gap
 - `[something]` is true in `[area A]`, but not in `[area B]`.
