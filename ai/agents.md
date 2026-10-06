@@ -1,6 +1,6 @@
 # Agents
 
-Workers called by the step skills (`skills.md`). Each one proposes; I decide at the gate.
+Workers called by the step skills (`skills.md`), defined in `.claude/agents/<name>.md`. Each one proposes; I decide at the gate. What every agent does, whatever its role, is in `agent-contract.md`.
 
 | Agent | Used in | Does |
 |---|---|---|

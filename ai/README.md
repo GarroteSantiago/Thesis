@@ -13,6 +13,9 @@ How AI skills and agents run the steps of `research/sls/` and `research/dsrm/`. 
 |---|---|
 | `skills.md` | Which skills exist and how they call each other |
 | `agents.md` | Which agents exist and what each one does |
+| `running.md` | How a skill runs a row: where to start, agent rows, rows by me, loops |
+| `gate.md` | How a gate runs: present, wait, apply, record, check |
+| `agent-contract.md` | What every agent receives, does, and returns |
 | `entry-points.md` | Where the work can start, and the route from each start |
 | `kickstart.md` | Step 0 (`0-start/`): the observation, and the safeguards against my own bias |
 | `files.md` | How every output is stored: small files, one per output |
