@@ -14,4 +14,4 @@ Saved as `ai-log/decisions/{date}-{row}-{id}.md`.
 {Or "nothing".}
 
 ## Raw log entries
-{session} {first}–{last}
+{session ID}, {time of the row's first dispatch}–{time of this gate}

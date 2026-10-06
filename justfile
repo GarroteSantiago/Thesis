@@ -42,6 +42,33 @@ wordcount:
 citations:
     @rg -o '@\w+{[^}]+}' chapters/ | sort | uniq
 
+# Check the research files against the workflow rules (ai/checks.md)
+check:
+    python3 ai/tools/research.py check
+
+# Regenerate research/views/ from the research files (ai/checks.md)
+views:
+    python3 ai/tools/research.py views
+
+# Upload the paper PDFs in research/papers/ to the "papers" GitHub release
+papers-push:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    shopt -s nullglob
+    pdfs=(research/papers/*.pdf)
+    if [ ${#pdfs[@]} -eq 0 ]; then echo "No PDFs in research/papers/."; exit 0; fi
+    gh release view papers >/dev/null 2>&1 || gh release create papers --title "Papers" --notes "PDFs of the papers read in the SLS (research/papers/)."
+    gh release upload papers "${pdfs[@]}" --clobber
+    echo "Uploaded ${#pdfs[@]} PDF(s) to the papers release."
+
+# Download the paper PDFs from the "papers" GitHub release into research/papers/
+papers-pull:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if ! gh release view papers >/dev/null 2>&1; then echo "No papers release yet."; exit 0; fi
+    gh release download papers --dir research/papers --pattern '*.pdf' --clobber
+    echo "Downloaded the papers release into research/papers/."
+
 # Git commit with message
 commit message:
     git add -A

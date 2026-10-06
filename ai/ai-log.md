@@ -4,10 +4,11 @@ Everything the AI does is recorded, not only the decisions. Two parts in `resear
 
 ## 1. Raw log
 `raw/<session>.jsonl`: every action, written automatically.
-- Written by Claude Code hooks, not by the agents, so no agent can forget or leave out an entry.
-- One entry per event: my prompts, skill calls, agent starts and stops, and every tool call with its full input and full output.
-- Each entry records: timestamp, session, skill, agent, flow row (e.g. `3a`), event type, input, output.
-- At session end, the session transcript is copied in as well. It also holds the model's own messages, which tool hooks do not see.
+- Written by the hooks in `.claude/settings.json`, which call `ai/tools/log_hook.py`, not by the agents, so no agent can forget or leave out an entry.
+- One entry per hook event, as Claude Code sends it, plus a timestamp: session start and end, my prompts, every tool call before it runs and after (full input and full output), every agent stop, every compaction.
+- Skill calls and agent dispatches are tool calls (`Skill`, `Agent`), so the skill, the agent and the row it was given are in their logged input. Subagents' own tool calls are logged too.
+- `raw/<session>.transcript.jsonl` is a copy of the session transcript, refreshed at every stop and at session end. It also holds the model's own messages, which tool hooks do not see.
+- At session start the hook gives the model the session ID, so gates can write it into decision files.
 - Append only. Never edited by hand.
 
 ## 2. Decisions
