@@ -10,7 +10,7 @@
 - It is *nominally* sequential: you may enter at a later activity, and you may iterate back [8]. It is never a free-for-all.
 
 **Which entry point am I using?**
-- Problem-centred: the research starts from an observed problem [8]. That is `1-problem/step.md` §1.1.
+- Problem-centred: the research starts from an observed problem [8]. That is `../0-start/observation.md`.
 
 **Where is the iteration?**
 - On Peffers' iteration arcs: from Evaluation or Communication back to Objectives or Design [8].

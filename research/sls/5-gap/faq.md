@@ -2,7 +2,7 @@
 
 **How do I read the gap off the matrix?**
 - Look for empty columns, and for concepts that never appear together in one row [1].
-- A gap is only useful if it matters for the need stated in `1-protocol/step.md` §1.1.
+- A gap is only useful if it matters for the need stated in `1-protocol/need.md`.
 
 **Which systems will likely show up as current solutions?**
 - Intel 432 [3], Transputer [4], J-Machine [5], CHERI (Capability Hardware Enhanced Reduced Instruction Set Computer Instructions) [6].

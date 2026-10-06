@@ -1,25 +1,19 @@
 # Activity 4 — Demonstration
 
-> **Inputs:** `3-design/step.md` · **Next:** `5-evaluation/`
+> **Inputs:** accepted `3-design/L{n}.md`, `2-objectives/O*.md` · **Next:** `5-evaluation/`
 
 > Peffers [1]: show that the artifact solves one or more instances of the problem, through experimentation, simulation, case study, proof, or another fitting activity.
-> A demonstration answers "does it work on this case?", not "how well?". How well is step 5.
 
-## 4.1 Demonstration plan
-| ID | Problem instance | Artifact layer | Activity (experiment / simulation / case study / proof / other) | Objectives it will feed |
-|---|---|---|---|---|
-| D1 | `[ ]` | `[ ]` | `[ ]` | O`[ ]` |
+## Rules
+- A demonstration answers "does it work on this case?", not "how well?". How well is step 5.
 
-## 4.2 Demonstration log (one entry per run)
-```
-Date:
-ID: D__
-Instance:
-Artifact layer and version:
-What happened:
-Solved the instance: yes / no because ...
-Observations passed to evaluation:
-```
+## Produces
+Templates in `ai/template/dsrm/4-demonstration/`. Flow rows 9a–9d (`ai/flow-dsrm.md`).
+
+| File | Holds |
+|---|---|
+| `D{n}.md` | One planned demonstration: instance, layer, activity, objectives fed |
+| `D{n}-run{k}.md` | One run of it, and whether it solved the instance |
 
 ---
 

@@ -1,24 +1,20 @@
 # Step 4 — Synthesis (concept matrix)
 
-> **Inputs:** records in `3-reading/step.md` · **Next:** `5-gap/`
+> **Inputs:** accepted `3-reading/P*.md` · **Next:** `5-gap/`
 
 > Webster and Watson [1]: organize the review by concept, not by author.
 > - Rows = papers. Columns = concepts found in the papers.
 > - Mark a cell when the paper discusses that concept, with the page.
 
-## 4.1 Concepts
-| ID | Concept | Definition | First found in |
-|---|---|---|---|
-| C1 | `[ ]` | `[ ]` | P`[ ]` |
+## Rules
+- The matrix is generated from the concepts in each `P{n}.md` (`just views`), never written by hand.
 
-## 4.2 Concept matrix
-| Paper | C1 | C2 | C3 | … |
-|---|---|---|---|---|
-| P1 `[author (year)]` | `[x, p.]` | `[ ]` | `[ ]` | |
+## Produces
+Template in `ai/template/sls/4-synthesis/`. Flow rows 4a–4b (`ai/flow-sls.md`).
 
-## 4.3 Synthesis per concept
-### C1 — `[concept]`
-- What the papers say, compared: `[ ]`
+| File | Holds |
+|---|---|
+| `C{n}.md` | One concept: definition, and what the papers say, compared |
 
 ---
 

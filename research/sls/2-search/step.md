@@ -1,28 +1,26 @@
 # Step 2 — Search (snowballing)
 
-> **Inputs:** `1-protocol/step.md` · **Next:** `3-reading/` for each paper included
+> **Inputs:** `1-protocol/`, `0-start/seeds.md` · **Next:** `3-reading/` for each paper included
 
 > Wohlin [1]: start from a set of papers, then follow references backward and citations forward, round by round.
 
-## 2.1 Start set
-- Search string or source used to find it: `[ ]`
-- Papers in the start set (checked against `1-protocol/step.md` §1.3):
+## Rules
+- **Start set:** seeds plus a database search, so it is varied [1].
+- **Each round** examines only the papers included in the previous one.
+  - **Backward:** the reference list of each paper.
+  - **Forward:** the papers that cite it.
+- **Screening** applies only the criteria in `1-protocol/criteria.md`.
+- **Stop** when a round includes no new papers [1].
+- Papers get P IDs in the order they are first included. Never renumber.
 
-| ID | Paper | Included? | Criterion |
-|---|---|---|---|
-| P1 | `[ ]` | `[yes/no]` | `[I_ / X_]` |
+## Produces
+Templates in `ai/template/sls/2-search/`. Flow rows 2a–2d (`ai/flow-sls.md`).
 
-## 2.2 Iterations
-> Each iteration examines only the papers included in the previous one.
-> - **Backward:** the reference list of each paper.
-> - **Forward:** the papers that cite it.
-
-| Iteration | Papers examined | Direction | Candidates found | Newly included (IDs) |
-|---|---|---|---|---|
-| 1 | `[P_, …]` | backward | `[ ]` | `[ ]` |
-| 1 | `[P_, …]` | forward | `[ ]` | `[ ]` |
-
-**Stop** when an iteration includes no new papers [1].
+| File | Holds |
+|---|---|
+| `search-string.md` | The database search and where it was run |
+| `R0.md` | The start set, screened |
+| `R{k}-backward.md`, `R{k}-forward.md` | One round in one direction, screened |
 
 ---
 

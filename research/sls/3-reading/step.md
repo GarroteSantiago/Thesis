@@ -1,26 +1,21 @@
 # Step 3 — Reading and extraction
 
-> **Inputs:** a paper included in `2-search/step.md`, the form in `1-protocol/step.md` · **Next:** `4-synthesis/`
+> **Inputs:** a paper included in `2-search/`, `1-protocol/quality.md`, `1-protocol/extraction-form.md` · **Next:** `4-synthesis/`
 
 > Keshav [1]: read in up to three passes, stopping when the paper has given what you need.
 > Kitchenham and Charters [2]: assess quality and extract the same fields from every paper.
 
-## Record (one per paper)
-```
-ID: P__
-Reference:
-Deepest pass: 1 / 2 / 3
-First pass, the five Cs [1]:
-  Category:
-  Context:
-  Correctness:
-  Contributions:
-  Clarity:
-Quality (Q1, Q2, … from 1-protocol §1.4):
-Extracted fields (from 1-protocol §1.5), each with page:
-Concepts found (for 4-synthesis), each with page:
-Notes:
-```
+## Rules
+- Every extracted value and concept has a page.
+- Papers my argument depends on are read in full by me.
+
+## Produces
+Template in `ai/template/sls/3-reading/`. Flow rows 3a–3c (`ai/flow-sls.md`).
+
+| File | Holds |
+|---|---|
+| `P{n}.md` | The record of one paper: five Cs, quality, extracted fields, concepts |
+| `P{n}.citations.md` | The citation check of that record |
 
 ---
 

@@ -1,25 +1,20 @@
 # Step 5 — Answers and gap
 
-> **Inputs:** `4-synthesis/step.md`
+> **Inputs:** accepted `4-synthesis/C*.md`, `1-protocol/SQ*.md` · **Next:** `dsrm/1-problem/`
 
-## 5.1 Answers to the review questions
-| ID | Answer | Papers |
-|---|---|---|
-| SQ1 | `[ ]` | `[P_, …]` |
-
-## 5.2 Gap
-> Webster and Watson [1]: what the matrix shows nobody has done, or done only in part.
-
-- Concepts or combinations of concepts no paper covers: `[ ]`
-- Current solutions and how far they get: `[ ]`
-
-## 5.3 History
-- Why it has not been done, or why earlier attempts failed: `[ ]` (papers: `[ ]`)
-
-## 5.4 Limitations of this review
+> Webster and Watson [1]: the gap is what the matrix shows nobody has done, or done only in part.
 > Kitchenham and Charters [2]: report what could have biased the review.
 
-- `[ ]`
+## Produces
+Templates in `ai/template/sls/5-gap/`. Flow rows 5a–5c (`ai/flow-sls.md`).
+
+| File | Holds |
+|---|---|
+| `SQ{n}.answer.md` | The answer to one review question |
+| `gap.md` | What no paper covers, or covers only in part |
+| `solutions.md` | Current solutions and how far they get |
+| `history.md` | Why it has not been done, or why earlier attempts failed |
+| `limitations.md` | What could have biased the review |
 
 ---
 

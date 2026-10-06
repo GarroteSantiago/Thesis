@@ -14,7 +14,7 @@ The process of Peffers et al. [1]: six activities, nominally sequential, run her
 
 ## Sequence, entry point, iteration
 - **Sequence:** 1 → 2 → 3 → 4 → 5 → 6 [1].
-- **Entry point:** problem-centred. The work starts from an observation (`1-problem/step.md` §1.1) [1].
+- **Entry point:** problem-centred. The work starts from an observation (`../0-start/observation.md`) [1].
 - **Iteration:** Peffers allows going back from Evaluation (5) and Communication (6) to Objectives (2) or Design (3) [1]. Each pass through 3 → 5 is Simon's generate–test cycle [2] and Hevner's design cycle [3]. Every evaluation entry states where the next pass goes.
 
 ## My operational rules (not part of Peffers)
@@ -24,9 +24,9 @@ These are working rules for keeping the repository consistent. They do not chang
 - **Re-check after iterating:** when an iteration arc changes step 2 or 3, re-check the later steps that used the old version.
 - **Sorting rule for any demo or result:**
   1. Someone else built it → not logged here.
-  2. I built it and it shows the artifact solving an instance → demonstration log (`4-demonstration/step.md`).
-  3. I built it and it measures an objective → results log (`5-evaluation/step.md`).
-  4. I built it and it serves no question → exploration notes. If it reveals a new question, go back to `1-problem/step.md`.
+  2. I built it and it shows the artifact solving an instance → a demonstration run (`4-demonstration/D{n}-run{k}.md`).
+  3. I built it and it measures an objective → an evaluation (`5-evaluation/E{n}.md`).
+  4. I built it and it serves no question → exploration notes. If it reveals a new question, go back to `1-problem/`.
 - **One folder per activity,** because each changes at a different speed [5]. Create a folder only when a real file needs it [6][7].
 
 ---

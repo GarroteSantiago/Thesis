@@ -1,6 +1,6 @@
 # Activity 6 — Communication
 
-> **Inputs:** whatever is stable in 1–5 · **Next:** the thesis document, or iterate back to `2-objectives/` or `3-design/` [1]
+> **Inputs:** accepted files of `1-problem/` to `5-evaluation/` and `sls/4-synthesis/`, `sls/5-gap/` · **Next:** the thesis document, or iterate back to `2-objectives/` or `3-design/` [1]
 
 ## Outline
 Standard layout for presenting design science work, from Gregor and Hevner [2]:
@@ -12,15 +12,19 @@ Standard layout for presenting design science work, from Gregor and Hevner [2]:
 6. Discussion
 7. Conclusion
 
-## Contribution type (Gregor and Hevner [2])
-| Type | Solution maturity | Application domain maturity |
-|---|---|---|
-| Improvement | low | high |
-| Invention | low | low |
-| Exaptation | high (known elsewhere) | low (new domain) |
-| Routine design | high | high |
+## Rules
+- I write the outline and claims of every section; the draft adds no new claims.
+- The contribution type follows Gregor and Hevner [2] (template: `contribution.md`).
 
-- My contribution: `[ ]` because `[ ]`
+## Produces
+Templates in `ai/template/dsrm/6-communicate/`. Flow rows 11a–11e (`ai/flow-dsrm.md`).
+
+| File | Holds |
+|---|---|
+| `ch{n}-{section}.outline.md` | My claims for one section, with sources |
+| `ch{n}-{section}.draft.md` | The drafted prose |
+| `ch{n}-{section}.md` | The final text |
+| `contribution.md` | The contribution type and why |
 
 ---
 

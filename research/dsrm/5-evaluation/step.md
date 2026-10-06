@@ -1,32 +1,21 @@
 # Activity 5 — Evaluation
 
-> **Inputs:** `2-objectives/step.md`, `4-demonstration/step.md` · **Next:** `6-communicate/`, or iterate back to `2-objectives/` or `3-design/` [1]
+> **Inputs:** accepted `2-objectives/`, `4-demonstration/D*-run*.md` · **Next:** `6-communicate/`, or iterate back to `2-objectives/` or `3-design/` [1]
 
 > Peffers [1]: observe and measure how well the artifact supports a solution, by comparing the objectives with the results observed in the demonstration.
 
-## 5.1 Evidence plan (Shaw's validation types [2])
-| Objective | Question type (from `1-problem/step.md` §1.5) | Validation type | Why this type fits |
-|---|---|---|---|
-| O1 | `[ ]` | `[analysis / evaluation / experience / example / persuasion]` | `[ ]` |
+## Rules
+- Each objective's validation type (Shaw [2]: analysis, evaluation, experience, example, persuasion) is set in its `O{n}.md`.
+- Every evaluation states where the next iteration goes.
+- Threats to validity use the four categories of Wohlin et al. [3]: conclusion, internal, construct, external.
 
-## 5.2 Results log (one entry per evaluation)
-```
-Date:
-ID: E__
-Question: RQ__
-Objective: O__
-Demonstrations used: D__
-Result: met / not met because ...
-Next: continue to 6 / iterate to 2 / iterate to 3, because ...
-```
+## Produces
+Templates in `ai/template/dsrm/5-evaluation/`. Flow rows 10a–10c (`ai/flow-dsrm.md`).
 
-## 5.3 Threats to validity (Wohlin et al. [3])
-| Category | Threat | Why it might make results wrong | What I did about it |
-|---|---|---|---|
-| Conclusion | `[ ]` | `[ ]` | `[ ]` |
-| Internal | `[ ]` | `[ ]` | `[ ]` |
-| Construct | `[ ]` | `[ ]` | `[ ]` |
-| External | `[ ]` | `[ ]` | `[ ]` |
+| File | Holds |
+|---|---|
+| `E{n}.md` | One evaluation: measurements, met or not, what comes next |
+| `T{n}.md` | One threat to validity and what I did about it |
 
 ---
 

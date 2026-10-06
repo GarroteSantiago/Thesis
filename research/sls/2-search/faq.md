@@ -7,7 +7,7 @@
 
 **How do I decide whether a candidate is in?**
 - Look at title first, then abstract, then the full text if still unsure [1].
-- Apply only the criteria in `1-protocol/step.md` §1.3. If you want a new criterion, log it in §1.6 first.
+- Apply only the criteria in `1-protocol/criteria.md`. If you want a new criterion, log a change in `1-protocol/changes/` first.
 
 **When do I stop?**
 - When an iteration finds no new papers [1]. Not when you are tired, and not when the matrix "looks done".

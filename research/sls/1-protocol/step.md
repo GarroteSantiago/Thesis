@@ -1,41 +1,25 @@
 # Step 1 — Protocol
 
-> **Inputs:** the observation that motivates the review · **Next:** `2-search/`
+> **Inputs:** `0-start/` · **Next:** `2-search/`
 
 > Kitchenham and Charters [1]: define the review before running it.
 
-## 1.1 Need for the review
-- What the review is about (from the observation): `[ ]`
-- Existing reviews on this topic, if any, and why they are not enough: `[ ]`
+## Rules
+- The protocol is written and frozen before any search, so selection does not bend to what I hoped to find [1].
+- Every SQ is served by at least one field of the extraction form.
+- Any change after freezing is a change file with its reason.
 
-## 1.2 Review questions
-| ID | Question | Why it matters to the observation |
-|---|---|---|
-| SQ1 | `[ ]` | `[ ]` |
-| SQ2 | `[ ]` | `[ ]` |
+## Produces
+Templates in `ai/template/sls/1-protocol/`. Flow rows 1a–1c (`ai/flow-sls.md`).
 
-## 1.3 Selection criteria
-| ID | Inclusion criterion |
+| File | Holds |
 |---|---|
-| I1 | `[ ]` |
-
-| ID | Exclusion criterion |
-|---|---|
-| X1 | `[ ]` |
-
-## 1.4 Quality assessment checklist
-| ID | Question asked of each paper | Scale |
-|---|---|---|
-| Q1 | `[ ]` | `[yes / partly / no]` |
-
-## 1.5 Data extraction form
-The fields filled for every included paper in `3-reading/step.md`:
-- `[ ]`
-
-## 1.6 Protocol review and changes
-| Date | Reviewed by / changed | What and why |
-|---|---|---|
-| `[ ]` | `[ ]` | `[ ]` |
+| `need.md` | What the review is about; existing reviews and why they are not enough |
+| `SQ{n}.md` | One review question each |
+| `criteria.md` | Inclusion (I) and exclusion (X) criteria |
+| `quality.md` | Quality checklist (Q) |
+| `extraction-form.md` | Fields extracted from every paper |
+| `changes/{date}-{slug}.md` | One per change after freezing |
 
 ---
 
