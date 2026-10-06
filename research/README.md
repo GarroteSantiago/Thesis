@@ -5,6 +5,7 @@ Step 0 and two methods, each method followed as its source defines it.
 | Folder | What | Role |
 |---|---|---|
 | `0-start/` | Step 0: the observation, my seeds and notes | Where the work starts. Frozen before the review. |
+| `papers/` | PDFs of the included papers, `P{n}.pdf`. Not in git: published to the `papers` release of the GitHub repo (`papers/README.md`) | What `reader` reads first |
 | `sls/` | Systematic Literature Study: protocol from Kitchenham and Charters [1], snowballing search from Wohlin [2] | Learn what exists, find the gap |
 | `dsrm/` | Design Science Research Methodology from Peffers et al. [3] | Build and evaluate the artifact |
 

@@ -14,9 +14,9 @@ Rows run by the `sls` skill (`skills.md`), after step 0 (`kickstart.md`). Paths 
 | 2c | `snowballer` | `sls/2-search/R{k-1}*.md`, `sls/1-protocol/criteria.md` | `sls/2-search/R{k}-backward.md`, `R{k}-forward.md` | — |
 | 2d | Me | 2c files | P IDs assigned | **Include/exclude** |
 | **SLS 3 Reading** · `sls-3-reading` (for each new P) | | | | |
-| 3a | `reader` | The paper, `sls/1-protocol/quality.md`, `extraction-form.md` | `sls/3-reading/P{n}.md` | — |
+| 3a | `reader` | `papers/P{n}.pdf` (else the paper online), `sls/1-protocol/quality.md`, `extraction-form.md` | `sls/3-reading/P{n}.md`, `papers/P{n}.pdf` if downloaded | — |
 | 3b | `citation-checker` | `sls/3-reading/P{n}.md`, the paper | `sls/3-reading/P{n}.citations.md` | — |
-| 3c | Me | 3a + 3b files | Status set; key papers read in full | **Record accepted** |
+| 3c | Me | 3a + 3b files | Status set; key papers read in full; PDFs published with `just papers-push` | **Record accepted** |
 | **SLS 4 Synthesis** · `sls-4-synthesis` | | | | |
 | 4a | `synthesizer` | Accepted `sls/3-reading/P*.md`, `sls/4-synthesis/C*.md` | `sls/4-synthesis/C{n}.md` (definition, papers, comparison), new or updated | — |
 | 4b | Me | 4a files | Status set; merges and splits | **Concepts accepted** |
