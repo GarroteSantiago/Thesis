@@ -18,7 +18,7 @@ Workers called by the step skills (`skills.md`). Each one proposes; I decide at 
 | `citation-checker` | Any step | Checks that each cited claim appears in the source at the cited page |
 
 ## Builder output per layer
-Layers from `dsrm/3-design/step.md`. The layer itself lives outside `research/`, in `artifact/L<n>/`; `dsrm/3-design/L<n>.md` describes it.
+Layers from `research/dsrm/3-design/step.md`. The layer itself lives outside `research/`, in `artifact/L<n>/`; `research/dsrm/3-design/L<n>.md` describes it.
 
 | Layer | Form | Check |
 |---|---|---|

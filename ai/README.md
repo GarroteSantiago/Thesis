@@ -1,6 +1,6 @@
 # AI workflow
 
-How AI skills and agents run the steps of `sls/` and `dsrm/`. These are working rules. They do not change either method.
+How AI skills and agents run the steps of `research/sls/` and `research/dsrm/`. These are working rules. They do not change either method.
 
 ## The line
 - **AI does the labour:** searching, drafting, building, measuring, writing prose.

@@ -5,7 +5,7 @@ Two `just` recipes. Neither is an agent: both are scripts, so they give the same
 ## `just check`
 Runs after every gate. Fails if any of these is broken:
 - **Traceability:** every file names IDs that exist (O → RQ, D → O, E → O and D).
-- **ID rule:** no ID was renamed or removed; it was retired instead (`dsrm/README.md`).
+- **ID rule:** no ID was renamed or removed; it was retired instead (`research/dsrm/README.md`).
 - **Stale chapters:** a chapter section whose sources changed after it was accepted.
 - **Complete files:** no `{placeholder}` or `[ ]` left, and every section of the template present (`files.md`).
 - **Decisions:** every gate has a decision file (`ai-log.md`).

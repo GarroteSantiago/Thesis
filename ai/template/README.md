@@ -3,7 +3,7 @@
 The shape of every file the workflow produces. The folders mirror `research/`, where the filled copies are saved. Each template is the spec of its file: frontmatter, sections, and a `{placeholder}` with what goes there.
 
 ## How to use
-1. Copy the template to the path in *Saved as*, replacing `{n}`, `{k}` and the other names.
+1. Copy the template to the path in *Saved as* (relative to `research/`), replacing `{n}`, `{k}` and the other names.
 2. Fill every `{placeholder}`. A produced file has none left (`../files.md`).
 3. Set the frontmatter: `id`, `row`, `by`, `inputs`. `status` starts as `proposed` (`provisional` for step 0).
 
