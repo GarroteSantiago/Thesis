@@ -2,6 +2,14 @@
 
 How a skill in `.claude/skills/` runs the rows of a step (`ai/flow-sls.md`, `ai/flow-dsrm.md`). Every step skill follows this.
 
+## Talking to me
+Whenever text meant for me (gate questions and their options, reports, progress notes) mentions an ID, give what it stands for first and the ID after it in parentheses. The content is a short paraphrase of the file it names:
+- Questions, criteria, concepts: "does raising the hardware toward the language cost performance or generality (SQ9)", "included if it answers one of the later questions directly (I4)", "same system, same results as another paper (X8)".
+- Quality questions: "is there a baseline it is compared against (Q4)".
+- Papers: author, year and short title, e.g. "Liedtke 1995, *On µ-Kernel Construction* (P46)".
+
+Never a bare list of IDs. Files keep IDs alone; this rule is for what I read here.
+
 ## Where to start
 Before running anything, read the step's existing files in `research/` and find the first row not done:
 - An agent row is done when all its output files exist.
