@@ -14,12 +14,12 @@ The process of Peffers et al. [1]: six activities, nominally sequential, run her
 
 ## Sequence, entry point, iteration
 - **Sequence:** 1 → 2 → 3 → 4 → 5 → 6 [1].
-- **Entry point:** problem-centred. The work starts from an observation (`../0-start/observation.md`) [1].
+- **Entry point:** fixed by step 0 (`../0-start/`, `../../ai/entry-points.md`): problem-centred, objective-centred, design-centred or context-initiated [1].
 - **Iteration:** Peffers allows going back from Evaluation (5) and Communication (6) to Objectives (2) or Design (3) [1]. Each pass through 3 → 5 is Simon's generate–test cycle [2] and Hevner's design cycle [3]. Every evaluation entry states where the next pass goes.
 
 ## My operational rules (not part of Peffers)
 These are working rules for keeping the repository consistent. They do not change the method.
-- **Traceability [4]:** Observation → Design problem → Questions (RQ) → Objectives (O) → Demonstrations (D) and Evaluations (E). Every piece names the ID it serves.
+- **Traceability [4]:** Step 0 → Design problem → Questions (RQ) → Objectives (O) → Demonstrations (D) and Evaluations (E). Every piece names the ID it serves.
 - **ID rule:** never rename an ID. Retire it and create a new one.
 - **Re-check after iterating:** when an iteration arc changes step 2 or 3, re-check the later steps that used the old version.
 - **Sorting rule for any demo or result:**

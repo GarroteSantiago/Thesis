@@ -5,6 +5,13 @@
 > Webster and Watson [1]: the gap is what the matrix shows nobody has done, or done only in part.
 > Kitchenham and Charters [2]: report what could have biased the review.
 
+## In plain words
+Once the search has stopped, we answer each review question from the concepts and name the gap: what no paper covers, or covers only in part. We also record the current solutions, why earlier attempts failed, and what could have biased the review.
+
+- **The AI:** drafts the answers and the gap; the skeptic tests whether the gap is real or only something this review missed.
+- **I decide:** each answer and the gap. The gap is stated in my words. About as many decisions as review questions, plus four.
+- **Result:** the gap the thesis aims at.
+
 ## Produces
 Templates in `ai/template/sls/5-gap/`. Flow rows 5a–5c (`ai/flow-sls.md`).
 

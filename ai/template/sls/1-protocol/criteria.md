@@ -3,7 +3,7 @@ id: criteria
 row: 1a
 by: protocol-critic
 status: proposed
-inputs: [0-start/observation.md, sls/1-protocol/SQ*.md]
+inputs: [0-start/*.md, sls/1-protocol/SQ*.md]
 ---
 # Selection criteria
 

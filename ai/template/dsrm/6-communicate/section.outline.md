@@ -7,7 +7,7 @@ inputs: [{accepted files of dsrm 1–5 and sls 4–5}]
 ---
 # Chapter {n}, {section}: outline
 
-Saved as `ch{n}-{section}.outline.md`.
+Saved as `ch{n}-{section}.outline.md`. To set the order of sections within a chapter, start `{section}` with a number: `ch2-1-background`, `ch2-2-related-work`.
 
 ## Claims, in order
 1. {Claim.} Source: {file or P ID}.

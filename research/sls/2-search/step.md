@@ -1,8 +1,15 @@
 # Step 2 — Search (snowballing)
 
-> **Inputs:** `1-protocol/`, `0-start/seeds.md` · **Next:** `3-reading/` for each paper included
+> **Inputs:** `1-protocol/` (criteria and SQs), `0-start/seeds.md` · **Next:** `3-reading/` for each paper included
 
 > Wohlin [1]: start from a set of papers, then follow references backward and citations forward, round by round.
+
+## In plain words
+We find the papers. First a start set: my seed papers plus a database search. Then rounds of snowballing: for each paper let in, the papers it cites and the papers that cite it. Each candidate is checked against the protocol's rules.
+
+- **The AI:** searches, collects candidates and suggests in or out for each, naming the rule that decides it.
+- **I decide:** in or out, for every candidate. The first round can bring dozens to hundreds of candidates; later rounds usually fewer.
+- **Result:** the list of papers in the review, each with its ID.
 
 ## Rules
 - **Start set:** seeds plus a database search, so it is varied [1].

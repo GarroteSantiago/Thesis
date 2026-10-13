@@ -10,7 +10,7 @@ Rows run by the `dsrm` skill (`skills.md`), after the SLS (`flow-sls.md`). Paths
 | 6c | `skeptic` | 6a + 6b files | `dsrm/1-problem/problem.skeptic.md` | — |
 | 6d | Me | 6a–6c files | Status set; what I change is recorded in the decision file | **Problem and RQs** |
 | **DSRM 2 Objectives** · `dsrm-2-objectives` | | | | |
-| 7a | Me | Accepted `dsrm/1-problem/RQ*.md`, `sls/5-gap/solutions.md` | `dsrm/2-objectives/`: `O{n}.md` (traces to, kind, check, validation type), `metrics.md`, `baselines.md` | — |
+| 7a | Me | Accepted `dsrm/1-problem/RQ*.md`, `sls/5-gap/solutions.md`, `0-start/objectives.md` if present | `dsrm/2-objectives/`: `O{n}.md` (traces to, kind, check, validation type), `metrics.md`, `baselines.md` | — |
 | 7b | `skeptic` | 7a files | `dsrm/2-objectives/objectives.skeptic.md` | — |
 | 7c | Me | 7a + 7b files | Status set | **Objectives frozen** before any results |
 | **DSRM 3 Design** · `dsrm-3-design` | | | | |
@@ -19,7 +19,7 @@ Rows run by the `dsrm` skill (`skills.md`), after the SLS (`flow-sls.md`). Paths
 | 8c | `builder` | Accepted `DEC*.md`, current layer | `artifact/L{n}/…`, `dsrm/3-design/L{n}.md` (what was built, version, check results) | — |
 | 8d | Me | 8c files | Status set; I can explain the layer | **Layer accepted** |
 | **DSRM 4 Demonstration** · `dsrm-4-demonstration` | | | | |
-| 9a | `demonstrator` | `dsrm/3-design/L{n}.md`, accepted `O*.md` | `dsrm/4-demonstration/D{n}.md` (instance, layer, activity, objectives fed) | — |
+| 9a | `demonstrator` | `dsrm/3-design/L{n}.md`, accepted `O*.md` | `dsrm/4-demonstration/D{n}.md` (instance, layer, activity, objectives fed); in the *record* variant also `D{n}-run{k}.md` | — |
 | 9b | Me | `D{n}.md` | Status set | **Plan** |
 | 9c | `demonstrator` | Accepted `D{n}.md`, `artifact/L{n}/` | `dsrm/4-demonstration/D{n}-run{k}.md` | — |
 | 9d | Me | `D{n}-run{k}.md` | Status set | **Solved?** |
@@ -35,6 +35,13 @@ Rows run by the `dsrm` skill (`skills.md`), after the SLS (`flow-sls.md`). Paths
 | 11d | `examiner` | The draft | `ch{n}-{section}.examiner.md` | — |
 | 11e | Me | 11b–11d files | `ch{n}-{section}.md` (final), `contribution.md` | **Text** |
 | ↺ | Me | 11d–11e files | Writing exposes a hole → 7a or 8a | **Iteration** [1] |
+
+## Other entry points
+Every entry point runs these rows in this order; the entry activity starts from step 0 instead of from blank (`entry-points.md`, *Routes* and *What changes in each activity*). Two entry points add a variant of a row:
+- **8c, describe:** `builder` describes an artifact that already exists instead of building it: `artifact/L{n}/` holds the artifact or a pointer to it, `dsrm/3-design/L{n}.md` describes it and records the layer's check run on it.
+  - Design-centred: the artifact from `0-start/artifact.md` becomes **layer 0**, the foundation the thesis builds on and usually its baseline. The first built layer is layer 1.
+  - Context-initiated, retroactive: the solution from `0-start/solution.md` becomes **layer 1**: it is the thesis's artifact. Before it, 8b reconstructs its design decisions, with no options file: `DEC{n}.md` records its builders' choice and the source for it.
+- **9a–9c, record** (context-initiated, retroactive): `demonstrator` writes each observed use from `0-start/solution.md` as `D{n}.md` and `D{n}-run1.md`, with its source, instead of planning and running new ones.
 
 ---
 

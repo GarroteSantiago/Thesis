@@ -4,3 +4,5 @@
 !.claude/
 .claude/settings.local.json
 research/papers/*.pdf
+build/
+__pycache__/

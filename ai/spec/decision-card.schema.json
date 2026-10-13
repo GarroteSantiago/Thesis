@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "decision-card.schema.json",
+  "title": "Decision card",
+  "description": "One decision that is mine, as an agent proposes it and a gate asks it (ai/gate.md, *Decision card*). The plain part is what I read; the edits are what the option does. Agents return each decision as a ```json block with this shape.",
+  "type": "object",
+  "required": ["target", "situation", "why_it_matters", "question", "options"],
+  "additionalProperties": false,
+  "properties": {
+    "target": {
+      "description": "The file the decision is about, relative to research/.",
+      "type": "string"
+    },
+    "situation": {
+      "description": "What is being decided and why it comes up now, in one to three plain sentences. Who raised it, on what grounds. No bare IDs, row numbers or file names (ai/gate.md, *Talking to me*).",
+      "type": "string"
+    },
+    "why_it_matters": {
+      "description": "What changes in the thesis depending on the answer, in one sentence.",
+      "type": "string"
+    },
+    "question": {
+      "description": "The choice itself, ending with a question mark.",
+      "type": "string",
+      "pattern": "\\?\\s*$"
+    },
+    "multi_select": {
+      "description": "True when the options are independent and several may be chosen.",
+      "type": "boolean",
+      "default": false
+    },
+    "options": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["label", "description", "edits"],
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "description": "The action in plain words, one to five words. Never an ID or a code alone.",
+            "type": "string",
+            "maxLength": 40
+          },
+          "description": {
+            "description": "What choosing it means, and what follows from it for the thesis.",
+            "type": "string"
+          },
+          "recommended": {
+            "description": "At most one option per card; listed first.",
+            "type": "boolean",
+            "default": false
+          },
+          "why_recommended": {
+            "type": "string"
+          },
+          "edits": {
+            "description": "The exact edits the option makes. Empty for 'no change'.",
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "required": ["file", "before", "after"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "file": {"type": "string"},
+                    "before": {"description": "Current text, matching exactly once.", "type": "string"},
+                    "after": {"type": "string"}
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": ["file", "status"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "file": {"type": "string"},
+                    "status": {"enum": ["accepted", "changed", "rejected", "retired"]}
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

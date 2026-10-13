@@ -3,12 +3,12 @@ id: need
 row: 1a
 by: protocol-critic
 status: proposed
-inputs: [0-start/observation.md]
+inputs: [0-start/*.md]
 ---
 # Need for the review
 
 ## What the review is about
-{From the observation, in two or three sentences.}
+{From step 0, in two or three sentences.}
 
 ## Existing reviews
 | Review | What it covers | Why it is not enough |

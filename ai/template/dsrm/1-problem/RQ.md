@@ -10,8 +10,8 @@ inputs: [dsrm/1-problem/design-problem.md, sls/5-gap/gap.md]
 ## Question
 {}
 
-## Type (Shaw)
-{method or means of development | method for analysis or evaluation | design, evaluation or analysis of a particular instance | generalization or characterization | feasibility study or exploration}
+## Type
+{one of the research question types of the profile (`ai/profiles/`), and why it fits}
 
 ## Why the answer could be "no"
 {}

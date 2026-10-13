@@ -3,7 +3,7 @@
 **Quantitative or qualitative?**
 - Quantitative when there is a current solution to beat: "better than X by this measure" [1].
 - Qualitative when the artifact addresses something no current solution does [1].
-- If no hardware today treats messages as its primitive, there may be no baseline, and some objectives will be qualitative. That is allowed.
+- If no current solution does what the artifact aims at, there may be no baseline, and some objectives will be qualitative. That is allowed.
 
 **Is a qualitative objective weaker?**
 - No, if it is checkable. Hevner accepts analytical and descriptive evaluation, not only numbers [2].
@@ -13,8 +13,8 @@
 - Every objective traces to exactly one question.
 
 **Vague vs checkable — what is the difference?**
-- Vague: "Actors are isolated."
-- Checkable: "No instruction lets an actor read another actor's memory."
+- Vague: "The system is secure."
+- Checkable: "No operation lets one user read another user's data."
 - If people could argue about whether it passed, it is not precise enough yet.
 
 ---

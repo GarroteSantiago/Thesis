@@ -4,6 +4,13 @@
 
 > Peffers [1]: show that the artifact solves one or more instances of the problem, through experimentation, simulation, case study, proof, or another fitting activity.
 
+## In plain words
+We show the artifact working on concrete cases. First a plan of cases, including at least one it might fail; then each case is run, or traced by hand on a paper design.
+
+- **The AI:** proposes the cases, then runs them and reports what happened.
+- **I decide:** the plan, then whether each case was really solved.
+- **Result:** the runs that evaluation measures.
+
 ## Rules
 - A demonstration answers "does it work on this case?", not "how well?". How well is step 5.
 

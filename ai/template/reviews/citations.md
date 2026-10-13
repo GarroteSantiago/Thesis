@@ -14,4 +14,4 @@ Saved next to the checked file as `{file}.citations.md`.
 | {quoted} | {P ID or reference} | {p.} | {found / differs / not found} | {} |
 
 ## Suggested fixes
-{One entry per claim marked differs or not found: the exact edit to the checked file, as `before` → `after`, quoting the record's current text so it matches exactly once. Or "none".}
+{One entry per claim marked differs or not found: first, in one plain sentence, what the checked file claims and what the source actually says; then the exact edit to the checked file, as `before` → `after`, quoting the record's current text so it matches exactly once. Or "none".}

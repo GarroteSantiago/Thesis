@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""`just check` and `just views` for the research folder. Spec: ai/checks.md.
+"""`just check`, `just views` and `just status` for the research folder. Spec: ai/checks.md, ai/status.md.
 
-    python3 ai/tools/research.py check   # exits 1 if any rule is broken
-    python3 ai/tools/research.py views   # regenerates research/views/
+    python3 ai/tools/research.py check    # exits 1 if any rule is broken
+    python3 ai/tools/research.py views    # regenerates research/views/
+    python3 ai/tools/research.py status   # where the thesis stands
 """
 import re
 import subprocess
@@ -169,9 +170,11 @@ def check_complete(docs, errors):
         for ph in re.findall(r"\{[^{}\n]*\}|\[ \]", without_code(d.text)):
             errors.append(f"{d.rel}: placeholder left: {ph}")
         _, tpl_body = parse_frontmatter(tpl.read_text(encoding="utf-8"))
-        have = set(headings(d.body))
+        # A source in parentheses is not part of the section's name: "Type (Shaw)" is the section "Type".
+        bare = lambda h: re.sub(r"\s*\([^)]*\)$", "", h)
+        have = {bare(h) for h in headings(d.body)}
         for h in headings(tpl_body):
-            if "{" not in h and h not in have:
+            if "{" not in h and bare(h) not in have:
                 errors.append(f"{d.rel}: missing section '## {h}' from {tpl.relative_to(ROOT)}")
 
 
@@ -288,13 +291,50 @@ def stop_rule(docs) -> str:
     last = [d for d in rounds if num(d.rel.split("/")[-1]) == k]
     new = [p for d in last for p in re.findall(r"\bP\d+\b", d.section("Newly included"))]
     if new:
-        return f"round {k} included {', '.join(sorted(set(new), key=num))}: run another round"
+        new = sorted(set(new), key=num)
+        listed = ", ".join(new) if len(new) <= 10 else f"{len(new)} papers ({new[0]}–{new[-1]})"
+        return f"round {k} included {listed}: run another round"
     return f"round {k} included no new papers: stop rule met"
+
+
+def check_spec(errors):
+    """ai/spec/flow.toml and the flow tables state the same rows, run by the same agent, writing the same files."""
+    import tomllib
+    spec_path = ROOT / "ai" / "spec" / "flow.toml"
+    if not spec_path.is_file():
+        return
+    with open(spec_path, "rb") as f:
+        rows = {r["id"]: r for r in tomllib.load(f).get("row", [])}
+    table = {}
+    for name in ("kickstart.md", "flow-sls.md", "flow-dsrm.md"):
+        path = ROOT / "ai" / name
+        for line in path.read_text(encoding="utf-8").splitlines() if path.is_file() else []:
+            cells = [c.strip() for c in line.strip().strip("|").split("|")]
+            m = re.fullmatch(r"\**(\d+[a-z]?)\**", cells[0]) if len(cells) >= 5 else None
+            if m:
+                table[m.group(1)] = (cells[1], line, name)
+    for rid, (who, line, name) in table.items():
+        row = rows.get(rid)
+        if row is None:
+            errors.append(f"ai/{name}: row {rid} is not in ai/spec/flow.toml")
+            continue
+        named = re.findall(r"`([\w-]+)`", who)
+        stated = named[0] if named else ("me" if who.lower().startswith("me") else who)
+        if stated != row["who"] and not (row["who"] == "check" and "check" in who):
+            errors.append(f"row {rid}: ai/{name} says it is run by {who}, ai/spec/flow.toml by {row['who']}")
+        for out in row.get("outputs", []):
+            shown = out.rsplit("/**", 1)[0] + "/" if out.endswith("/**") else out.rsplit("/", 1)[-1]
+            if shown not in line:
+                errors.append(f"row {rid}: output {out} of ai/spec/flow.toml is not in its row of ai/{name}")
+    for rid in rows:
+        if re.fullmatch(r"\d+[a-z]?", rid) and rid not in table:
+            errors.append(f"ai/spec/flow.toml: row {rid} is in no flow table")
 
 
 def check(_args):
     docs = produced_docs()
     errors = []
+    check_spec(errors)
     check_status(docs, errors)
     check_complete(docs, errors)
     check_decisions(docs, errors)
@@ -397,18 +437,318 @@ def view_chapters(docs):
     return "# Chapters\n\n" + HEADER + "\n" + table(["Section", "Outline", "Draft", "Final", "Stale"], rows)
 
 
+def view_ai_usage(docs):
+    """What the AI proposed and what I did with it, per row: the basis of the Method chapter's AI statement."""
+    counts = {}
+    for d in decision_docs(docs):
+        row = d.meta.get("row", "?")
+        outcome = d.meta.get("decision", "?")
+        counts.setdefault(row, {}).setdefault(outcome, 0)
+        counts[row][outcome] += 1
+    rows = []
+    for row in sorted(counts, key=lambda r: (num(r), r)):
+        c = counts[row]
+        total = sum(c.values())
+        rows.append([row, total, c.get("accepted", 0), c.get("changed", 0), c.get("rejected", 0)])
+    totals = [sum(r[i] for r in rows) for i in range(1, 5)]
+    sessions = len(list((RESEARCH / "ai-log" / "raw").glob("*.jsonl"))) - len(list((RESEARCH / "ai-log" / "raw").glob("*.transcript.jsonl"))) \
+        if (RESEARCH / "ai-log" / "raw").is_dir() else 0
+    return ("# AI usage\n\n" + HEADER + "\nDecisions I made at the gates, on files the AI proposed or I wrote "
+            "(`ai/ai-log.md`). *Changed* means I accepted the file with my own edits.\n\n"
+            + table(["Row", "Decisions", "Accepted as proposed", "Changed", "Rejected"], rows + ([["all", *totals]] if rows else []))
+            + f"\nLogged sessions: {sessions}.\n")
+
+
 def views(_args):
     docs = produced_docs()
     VIEWS.mkdir(exist_ok=True)
     for name, build in (("papers", view_papers), ("concept-matrix", view_concepts),
-                        ("traceability", view_traceability), ("chapters", view_chapters)):
+                        ("traceability", view_traceability), ("chapters", view_chapters),
+                        ("ai-usage", view_ai_usage)):
         (VIEWS / f"{name}.md").write_text(build(docs), encoding="utf-8")
         print(f"research/views/{name}.md")
     return 0
 
 
+# ---------- status ----------
+
+REVIEW = re.compile(r"\.(skeptic|citations|examiner)\.md$")
+ENTRY_FILES = {  # the required step 0 file of each entry point (ai/entry-points.md)
+    "observation.md": "problem-centred",
+    "objectives.md": "objective-centred",
+    "artifact.md": "design-centred",
+    "context.md": "context-initiated, client engagement",
+    "solution.md": "context-initiated, retroactive",
+}
+
+
+def entry_point():
+    for name, entry in ENTRY_FILES.items():
+        if (RESEARCH / "0-start" / name).is_file():
+            return entry
+    return ""
+
+
+def project_settings():
+    path = ROOT / "ai" / "project.md"
+    return parse_frontmatter(path.read_text(encoding="utf-8"))[0] if path.is_file() else {}
+
+
+def in_folder(docs, folder):
+    return [d for d in flow_docs(docs) if d.rel.startswith(folder + "/") and not REVIEW.search(d.rel)]
+
+
+def by_status(docs):
+    counts = {}
+    for d in docs:
+        counts[d.status] = counts.get(d.status, 0) + 1
+    order = ["accepted", "changed", "proposed", "provisional", "rejected", "retired"]
+    return ", ".join(f"{counts[s]} {s}" for s in order if s in counts) or "nothing yet"
+
+
+def step_state(docs, folder, done_when):
+    """(state, detail) of one step folder: 'not started', 'in progress' or 'done'."""
+    files = in_folder(docs, folder)
+    if not files:
+        return "not started", ""
+    waiting = [d for d in files if d.status in ("proposed", "provisional")]
+    done = not waiting and done_when(files)
+    return ("done" if done else "in progress"), by_status(files)
+
+
+def has(files, name, decided=True):
+    return any(d.rel.endswith("/" + name) and (not decided or d.status in LIVE) for d in files)
+
+
+def steps(docs):
+    """Every step, in route order (ai/entry-points.md), as (name, state, detail)."""
+    papers = assigned_papers(docs)
+    records = {d.id: d for d in in_folder(docs, "sls/3-reading")}
+    read = sum(1 for p in papers if p in records and records[p].status in DECIDED)
+    objectives = [d for d in in_folder(docs, "dsrm/2-objectives") if kind_of(d) == "O" and d.status in LIVE]
+    met = {o for e in in_folder(docs, "dsrm/5-evaluation") if kind_of(e) == "E" and e.status in LIVE
+           and e.section("Result").strip().startswith("met") for o in re.findall(r"\bO\d+\b", e.section("Objective"))}
+    finals = [n for n, p in chapter_sections(docs).items() if "final" in p and p["final"].status in LIVE]
+
+    rows = {
+        "0": ("Step 0, the starting point", *step_state(docs, "0-start", lambda f: True)),
+        "S1": ("Literature 1, the review rules", *step_state(docs, "sls/1-protocol", lambda f: has(f, "criteria.md"))),
+        "S2": ("Literature 2, finding papers", *step_state(docs, "sls/2-search", lambda f: "stop rule met" in stop_rule(docs))),
+        "S3": ("Literature 3, reading papers", *step_state(docs, "sls/3-reading", lambda f: read == len(papers))),
+        "S4": ("Literature 4, concepts", *step_state(docs, "sls/4-synthesis", lambda f: "stop rule met" in stop_rule(docs))),
+        "S5": ("Literature 5, the gap", *step_state(docs, "sls/5-gap", lambda f: has(f, "gap.md"))),
+        "D1": ("Design 1, the problem", *step_state(docs, "dsrm/1-problem", lambda f: has(f, "design-problem.md"))),
+        "D2": ("Design 2, objectives", *step_state(docs, "dsrm/2-objectives", lambda f: bool(objectives))),
+        "D3": ("Design 3, design and build", *step_state(docs, "dsrm/3-design", lambda f: bool(objectives) and met == {o.id for o in objectives})),
+        "D4": ("Design 4, demonstration", *step_state(docs, "dsrm/4-demonstration", lambda f: bool(objectives) and met == {o.id for o in objectives})),
+        "D5": ("Design 5, evaluation", *step_state(docs, "dsrm/5-evaluation", lambda f: bool(objectives) and met == {o.id for o in objectives})),
+        "D6": ("Design 6, writing", *step_state(docs, "dsrm/6-communicate", lambda f: len(finals) >= 7 and has(f, "contribution.md"))),
+    }
+    extra = {
+        "S2": stop_rule(docs),
+        "S3": f"{read} of {len(papers)} papers in the review have a decided reading record",
+        "D5": f"{len(met)} of {len(objectives)} objectives met" if objectives else "",
+        "D6": f"{len(finals)} final sections" if finals else "",
+    }
+    order = list(rows)  # every entry point runs the same order (ai/entry-points.md, *Routes*)
+    out = []
+    for key in order:
+        name, state, detail = rows[key]
+        detail = "; ".join(x for x in (detail, extra.get(key, "")) if x and state != "not started")
+        out.append((name, state, detail))
+    return out
+
+
+def status(_args):
+    docs = produced_docs()
+    settings = project_settings()
+    print(f"Entry point: {entry_point() or 'not chosen yet'}. Profile: {settings.get('profile', 'not chosen yet')}.")
+
+    last = git("log", "-1", "--format=%h, %cr: %s").strip()
+    print(f"\nLast commit: {last or 'none yet'}")
+    if last:
+        files = [f for f in git("show", "--name-only", "--format=", "HEAD").split() if not f.startswith("research/ai-log/raw/")]
+        print(f"  {len(files)} file(s): " + ", ".join(files[:8]) + (", …" if len(files) > 8 else ""))
+
+    pending = [l[3:] for l in git("status", "--porcelain", "--", "research", "artifact").splitlines()
+               if "research/ai-log/raw/" not in l]
+    print(f"\nIn progress (not committed): {len(pending)} file(s)")
+    for f in pending[:15]:
+        print(f"  {f}")
+    if len(pending) > 15:
+        print(f"  … and {len(pending) - 15} more")
+
+    print("\nSteps:")
+    current = None
+    for name, state, detail in steps(docs):
+        print(f"  [{ {'done': 'x', 'in progress': '~', 'not started': ' '}[state] }] {name}: {state}" + (f" ({detail})" if detail else ""))
+        if current is None and state != "done":
+            current = name
+    done = sum(1 for _, s, _ in steps(docs) if s == "done")
+    print(f"\nProgress: {done} of 12 steps done. Current step: {current or 'all done'}.")
+    waiting = [d for d in flow_docs(docs) if d.status in ("proposed", "provisional") and not REVIEW.search(d.rel)]
+    print(f"Waiting for my decision: {len(waiting)} file(s).")
+    return 0
+
+
+# ---------- export ----------
+
+BUILD = ROOT / "build"
+REFERENCES = VIEWS / "references.json"  # generated, committed, so an export works offline
+DOI = re.compile(r"\b(10\.\d{4,9}/[^\s|)>\]]+)", re.I)
+CITE = re.compile(r"@(P\d+)\b")
+CHAPTERS = {1: "Introduction", 2: "Literature review", 3: "Method", 4: "Artifact description",
+            5: "Evaluation", 6: "Discussion", 7: "Conclusion"}  # research/README.md, *Thesis chapters*
+
+
+def natural(text: str):
+    return [int(t) if t.isdigit() else t for t in re.split(r"(\d+)", text)]
+
+
+def paper_doi(pid, records, papers):
+    """The paper's DOI: its record's frontmatter, its reference, or its row in the round file."""
+    rec = records.get(pid)
+    for text in ((rec.meta.get("doi", "") if rec else ""), (rec.section("Reference") if rec else ""),
+                 papers.get(pid, {}).get("reference", "")):
+        m = DOI.search(text or "")
+        if m:
+            return m.group(1).rstrip(".,;")
+    return ""
+
+
+def fetch_csl(doi: str):
+    """CSL-JSON for a DOI, by content negotiation at doi.org. None when offline or unknown."""
+    import json
+    import urllib.request
+    req = urllib.request.Request(f"https://doi.org/{doi}", headers={"Accept": "application/vnd.citationstyles.csl+json"})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as r:
+            return clean_csl(json.loads(r.read().decode("utf-8")))
+    except Exception:
+        return None
+
+
+CSL_NAMES = {"author", "editor"}
+CSL_DATES = {"issued"}
+CSL_TEXT = {"type", "title", "container-title", "collection-title", "volume", "issue", "page", "DOI", "URL",
+            "publisher", "publisher-place", "edition", "ISBN", "ISSN", "event", "genre", "number"}
+
+
+def clean_csl(item: dict) -> dict:
+    """Keep only standard CSL fields: doi.org adds registry data (lists, nested records) pandoc rejects."""
+    out = {}
+    for key, value in item.items():
+        if key in CSL_NAMES and isinstance(value, list):
+            out[key] = [{k: v for k, v in n.items() if k in ("given", "family", "literal", "suffix", "non-dropping-particle")}
+                        for n in value if isinstance(n, dict)]
+        elif key in CSL_DATES and isinstance(value, dict) and "date-parts" in value:
+            out[key] = {"date-parts": value["date-parts"]}
+        elif key in CSL_TEXT:
+            if isinstance(value, list):
+                value = value[0] if value else None
+            if isinstance(value, (str, int)) and value != "":
+                out[key] = value
+    return out
+
+
+def parse_reference(pid: str, text: str):
+    """A minimal CSL item from a reference written as 'Authors (year). *Title*. Venue.'"""
+    m = re.match(r"\s*(?P<authors>.+?)\s*\((?P<year>\d{4})[a-z]?\)\.?\s*\*(?P<title>.+?)\*\.?\s*(?P<venue>.*?)\.?\s*$", text)
+    if not m:
+        return {"id": pid, "type": "article", "title": text.strip()}
+    item = {"id": pid, "type": "article-journal", "title": m["title"], "issued": {"date-parts": [[int(m["year"])]]},
+            "author": [{"literal": a.strip()} for a in re.split(r",\s*(?:and\s+)?|\s+and\s+", m["authors"]) if a.strip()]}
+    if m["venue"]:
+        item["container-title"] = m["venue"]
+    return item
+
+
+def build_references(docs, cited):
+    """research/views/references.json: one CSL item per cited paper, keyed by its P ID."""
+    import json
+    old = {}
+    if REFERENCES.is_file():
+        old = {i["id"]: i for i in json.loads(REFERENCES.read_text(encoding="utf-8"))}
+    papers = assigned_papers(docs)
+    records = {d.id: d for d in docs if d.rel.startswith("sls/3-reading/") and kind_of(d) == "P"}
+    items, notes = [], []
+    for pid in sorted(cited, key=num):
+        doi = paper_doi(pid, records, papers)
+        item = old.get(pid)
+        if item is None or (doi and item.get("DOI", "").lower() != doi.lower()):
+            fetched = fetch_csl(doi) if doi else None
+            if fetched:
+                item = fetched
+            else:
+                ref = records[pid].section("Reference").strip() if pid in records else papers.get(pid, {}).get("reference", "")
+                item = parse_reference(pid, ref)
+                notes.append(f"{pid}: " + (f"DOI {doi} could not be looked up (offline?)" if doi else "no DOI") + "; built from its reference text")
+        item["id"] = pid
+        items.append(item)
+    VIEWS.mkdir(exist_ok=True)
+    REFERENCES.write_text(json.dumps(items, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    return notes
+
+
+def export(args):
+    """Assemble the accepted final sections into build/thesis.md, then build .docx and .pdf with pandoc."""
+    docs = produced_docs()
+    settings = project_settings()
+    sections = sorted(((n, p["final"]) for n, p in chapter_sections(docs).items()
+                       if "final" in p and p["final"].status in LIVE),
+                      key=lambda kv: (num(kv[0]), natural(kv[0])))
+    if not sections:
+        print("No accepted final section yet (dsrm/6-communicate/ch{n}-{section}.md): nothing to export.")
+        return 1
+    body, chapter, cited, bare = [], None, set(), set()
+    for name, d in sections:
+        n = num(name)
+        if n != chapter:
+            body.append(f"# {CHAPTERS.get(n, f'Chapter {n}')}\n")
+            chapter = n
+        text = re.sub(r"^# .*\n", "", d.body, count=1)              # the file's own title
+        text = re.sub(r"^Saved as `.*\n", "", text, flags=re.M)      # template boilerplate
+        title = re.sub(r"^\d+-", "", name.split("-", 1)[1]).replace("-", " ").capitalize()
+        body.append(f"## {title}\n\n{text.strip()}\n")
+        here = set(CITE.findall(text))
+        cited |= here
+        bare |= set(re.findall(r"(?<![@\w])P\d+\b", text)) - here
+    notes = build_references(docs, cited)
+
+    BUILD.mkdir(exist_ok=True)
+    bibs = [REFERENCES] + ([RESEARCH / "references.bib"] if (RESEARCH / "references.bib").is_file() else [])
+    meta = ["---", f"title: \"{settings.get('title', 'Thesis')}\"", f"author: \"{settings.get('author', '')}\"",
+            "link-citations: true", "bibliography:"] + [f"  - {p.relative_to(ROOT).as_posix()}" for p in bibs]
+    style = settings.get("citation_style", "default")
+    if style not in ("", "default"):
+        meta.append(f"csl: {style}")
+    meta += ["---", ""]
+    source = BUILD / "thesis.md"
+    source.write_text("\n".join(meta) + "\n".join(body) + "\n# References\n", encoding="utf-8")
+    print(f"{source.relative_to(ROOT)}: {len(sections)} section(s), {len(cited)} paper(s) cited.")
+    for note in notes:
+        print(f"  reference: {note}")
+    if bare:
+        print(f"  not cited with [@P..] syntax, so not in the bibliography: {', '.join(sorted(bare, key=num))}")
+
+    failed = 0
+    reference_doc = settings.get("reference_doc", "none")
+    for target, extra in (("docx", [f"--reference-doc={reference_doc}"] if reference_doc not in ("", "none") else []),
+                          ("pdf", ["--pdf-engine=typst", "-V", "mainfont=Libertinus Serif"])):
+        out = BUILD / f"thesis.{target}"
+        r = subprocess.run(["pandoc", source.relative_to(ROOT).as_posix(), "--citeproc",
+                            "-o", out.relative_to(ROOT).as_posix(), *extra],
+                           cwd=ROOT, capture_output=True, text=True)
+        if r.returncode == 0:
+            print(f"{out.relative_to(ROOT)}")
+        else:
+            failed = 1
+            print(f"{out.relative_to(ROOT)}: pandoc failed:\n{r.stderr.strip()}")
+    return failed
+
+
 if __name__ == "__main__":
-    commands = {"check": check, "views": views}
+    commands = {"check": check, "views": views, "status": status, "export": export}
     if len(sys.argv) < 2 or sys.argv[1] not in commands:
         print(__doc__)
         sys.exit(2)

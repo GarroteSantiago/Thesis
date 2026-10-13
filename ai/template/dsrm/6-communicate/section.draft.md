@@ -9,4 +9,4 @@ inputs: [dsrm/6-communicate/ch{n}-{section}.outline.md]
 
 Saved as `ch{n}-{section}.draft.md`. Every paragraph serves a claim from the outline; no new claims.
 
-{Prose, with citations.}
+{Prose, with citations as `[@P12, p. 4]`.}

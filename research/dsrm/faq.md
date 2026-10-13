@@ -3,14 +3,14 @@
 **What methodology is this?**
 - Design Science Research: learn by building an artifact and testing it [3].
 - The process is the Design Science Research Methodology (DSRM) of Peffers et al. [8].
-- The *artifact* is what you create: here, the actor machine's instruction set, language, and simulator.
+- The *artifact* is what you create: a construct, model, method or instantiation [3].
 
 **Why follow the sequence instead of jumping between steps?**
 - The sequence is the paper's contribution: a common, recognizable process for design science work [8].
 - It is *nominally* sequential: you may enter at a later activity, and you may iterate back [8]. It is never a free-for-all.
 
 **Which entry point am I using?**
-- Problem-centred: the research starts from an observed problem [8]. That is `../0-start/observation.md`.
+- The one fixed by step 0 (`../0-start/`): the required file there names it. How to choose one, and what each means for the thesis: `../../ai/entry-points.md` [8].
 
 **Where is the iteration?**
 - On Peffers' iteration arcs: from Evaluation or Communication back to Objectives or Design [8].

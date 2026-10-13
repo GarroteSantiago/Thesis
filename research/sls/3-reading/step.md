@@ -1,18 +1,20 @@
 # Step 3 — Reading and extraction
 
-> **Inputs:** a paper included in `2-search/`, `1-protocol/quality.md`, `1-protocol/extraction-form.md` · **Next:** `4-synthesis/`
+> **Inputs:** a paper included in `2-search/`, `1-protocol/quality.md`, `1-protocol/extraction-form.md`, `1-protocol/criteria.md`, `1-protocol/SQ*.md` · **Next:** `4-synthesis/`
 
 > Keshav [1]: read in up to three passes, stopping when the paper has given what you need.
 > Kitchenham and Charters [2]: assess quality and extract the same fields from every paper.
 
+## In plain words
+Each paper let in is read and summarised the same way: what kind of paper it is, how solid it is, the facts the extraction form asks for, and the ideas it covers, all with page numbers. A second helper checks every claim against the page cited.
+
+- **The AI:** reads each paper and writes its reading record; checks its citations.
+- **I decide:** whether each record is faithful to its paper. One decision per paper. The papers my argument rests on I read myself, in full.
+- **Result:** one accepted record per paper.
+
 ## Rules
 - Every extracted value and concept has a page.
-- Papers my argument depends on (key papers) are read in full by me. A paper is key if it passes at least one test:
-  1. **Sole or main evidence:** it is the only paper, or one of very few, answering an SQ.
-  2. **Load-bearing claim:** the problem or the gap rests on a claim it makes.
-  3. **Strongest counter-evidence:** it argues most strongly against the observation.
-  4. **Seed:** it is in `0-start/seeds.md`.
-- Key papers are proposed, with the test each passes, at 3c (provisional); updated at each 4b from the papers each accepted concept rests on; extended at 5c with any paper `5-gap/gap.md` rests on; and read in full before the gap gate (5c) is decided. Change: `1-protocol/changes/2026-10-12-key-papers.md`.
+- Papers my argument depends on are read in full by me.
 
 ## Produces
 Template in `ai/template/sls/3-reading/`. Flow rows 3a–3c (`ai/flow-sls.md`).

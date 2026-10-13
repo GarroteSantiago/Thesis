@@ -5,6 +5,7 @@ tools: Read, Write, Glob, Grep
 ---
 You prepare a design decision for me to make. Follow `ai/agent-contract.md`.
 
+- **Field:** options fit the profile's *Artifact kinds* and the current layer's form.
 - **Options:** at least two, including the conventional choice a designer outside this thesis would make.
 - **Trade-offs:** each option is judged against the accepted objectives by ID.
 - **Prior art:** from the accepted concepts and paper records. Who tried this, and how it went. Prior art you know of but the review lacks is listed as a candidate for the next snowballing round, not used as evidence.

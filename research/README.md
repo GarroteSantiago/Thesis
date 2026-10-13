@@ -4,7 +4,7 @@ Step 0 and two methods, each method followed as its source defines it.
 
 | Folder | What | Role |
 |---|---|---|
-| `0-start/` | Step 0: the observation, my seeds and notes | Where the work starts. Frozen before the review. |
+| `0-start/` | Step 0: where the thesis starts (an observation, objectives, an artifact or a solution, by entry point), my seeds and notes | Where the work starts. Frozen before the review. |
 | `papers/` | PDFs of the included papers, `P{n}.pdf`. Not in git: published to the `papers` release of the GitHub repo (`papers/README.md`) | What `reader` reads first |
 | `sls/` | Systematic Literature Study: protocol from Kitchenham and Charters [1], snowballing search from Wohlin [2] | Learn what exists, find the gap |
 | `dsrm/` | Design Science Research Methodology from Peffers et al. [3] | Build and evaluate the artifact |
@@ -25,13 +25,13 @@ Step 0 and two methods, each method followed as its source defines it.
 | 3 Design | Knowledge of theory that can be brought to bear | `sls/4-synthesis/` |
 
 ## Thesis chapters
-The thesis is built from both methods. Outline from `dsrm/6-communicate/step.md`. Chapter status is generated into `views/` (`../ai/checks.md`).
+The thesis is built from both methods. Outline from `dsrm/6-communicate/step.md`. `just export` assembles the final sections into one document (`../ai/export.md`). Chapter status is generated into `views/` (`../ai/checks.md`).
 
 | Chapter | Built from |
 |---|---|
 | 1 Introduction | `dsrm/1-problem/`, `dsrm/2-objectives/` |
 | 2 Literature review | `sls/4-synthesis/`, `sls/5-gap/` |
-| 3 Method | `dsrm/README.md`, `sls/README.md` |
+| 3 Method | `dsrm/README.md`, `sls/README.md`, the AI use: `../ai/README.md`, `views/ai-usage.md`, `ai-log/` |
 | 4 Artifact description | `dsrm/3-design/` |
 | 5 Evaluation | `dsrm/4-demonstration/`, `dsrm/5-evaluation/` |
 | 6 Discussion | `dsrm/5-evaluation/T*.md`, `dsrm/6-communicate/contribution.md` |

@@ -2,6 +2,14 @@
 
 > **Inputs:** accepted files of `1-problem/` to `5-evaluation/` and `sls/4-synthesis/`, `sls/5-gap/` · **Next:** the thesis document, or iterate back to `2-objectives/` or `3-design/` [1]
 
+## In plain words
+We write the thesis, one section at a time. I give the outline (my claims and where each comes from); the AI drafts the prose, checks every citation, and plays the committee by asking the questions I will face. I make the final edits.
+
+- **I write:** the outline of each section, and the final edits.
+- **The AI:** drafts, checks citations, asks examiner questions.
+- **I decide:** the final text of each section, and the thesis's contribution type.
+- **Result:** final sections. If writing shows a hole, we go back to objectives or design.
+
 ## Outline
 Standard layout for presenting design science work, from Gregor and Hevner [2]:
 1. Introduction

@@ -18,8 +18,11 @@
 - Friday: write 1–2 pages.
 
 **Which contribution type is mine?**
-- Probably *exaptation*: actors and messages are mature in languages and networks, and you move them to operating systems and hardware [1].
-- *Invention* if you argue the solution itself is new, not only the domain [1].
+Gregor and Hevner place it by two questions: is the solution new or known, and is the problem's domain new or well understood [1]?
+- *Improvement:* a new solution for a known problem: a better way to do something already done [1].
+- *Exaptation:* a known solution, mature in one domain, moved to a domain where it is not used [1].
+- *Invention:* a new solution for a new problem: both are new [1].
+- *Routine design:* a known solution for a known problem. Rarely enough for a thesis on its own [1].
 
 **Is there a model paper for how to report results?**
 - Smith's cache survey is a clear example of reporting a design with its measurements and limits [2].

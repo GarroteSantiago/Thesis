@@ -4,6 +4,13 @@
 
 > Kitchenham and Charters [1]: define the review before running it.
 
+## In plain words
+Before looking for any paper, we write down the rules of the review: the questions the literature should answer, which papers count and which do not, how each paper is judged, and which facts are taken from every paper. Fixing the rules first stops the review from bending toward what I hope to find.
+
+- **The AI:** drafts the rules from step 0; the skeptic adds questions that look for evidence against my idea.
+- **I decide:** each question, the inclusion and exclusion rules, the quality checklist and the extraction form. Usually 10–20 decisions.
+- **Result:** the protocol, frozen. Changing it later is allowed, but each change is written down with its reason.
+
 ## Rules
 - The protocol is written and frozen before any search, so selection does not bend to what I hoped to find [1].
 - Every SQ is served by at least one field of the extraction form.

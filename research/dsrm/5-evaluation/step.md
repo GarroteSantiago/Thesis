@@ -4,10 +4,17 @@
 
 > Peffers [1]: observe and measure how well the artifact supports a solution, by comparing the objectives with the results observed in the demonstration.
 
+## In plain words
+We measure how well the artifact meets each objective, against the baseline, and list honest reasons the results might be wrong. Then I decide where to go next: build the next layer or fix this one, rethink an objective, or move on to writing.
+
+- **The AI:** measures and drafts the evaluations and threats; the skeptic attacks them.
+- **I decide:** each result, then where the next iteration goes.
+- **Result:** evaluated results, and the next step.
+
 ## Rules
-- Each objective's validation type (Shaw [2]: analysis, evaluation, experience, example, persuasion) is set in its `O{n}.md`.
+- Each objective's validation type is set in its `O{n}.md`, from the types of the project's profile (`ai/profiles/`; the computing profile uses Shaw's [2]).
 - Every evaluation states where the next iteration goes.
-- Threats to validity use the four categories of Wohlin et al. [3]: conclusion, internal, construct, external.
+- Threats to validity use the categories of the project's profile (the computing profile uses the four of Wohlin et al. [3]: conclusion, internal, construct, external).
 
 ## Produces
 Templates in `ai/template/dsrm/5-evaluation/`. Flow rows 10a–10c (`ai/flow-dsrm.md`).

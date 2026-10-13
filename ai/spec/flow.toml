@@ -1,0 +1,353 @@
+# The workflow as data: every row of the flow, who runs it, what it reads and writes, and where I decide.
+#
+# The machine-readable twin of ai/kickstart.md, ai/flow-sls.md and ai/flow-dsrm.md. Those keep the prose;
+# this keeps the facts the tools enforce: the guard hook (ai/tools/guard.py) and, later, the app runtime.
+# `just check` fails if the two disagree on a row's existence, who runs it, or an output (ai/spec/README.md).
+#
+# Paths are relative to research/, except those starting with artifact/.
+# Placeholders: {n} and {k} are numbers; {section}, {date}, {slug} are names. * matches within one folder,
+# ** across folders.
+# who: an agent in .claude/agents/, "me", or "check" (a script).
+# gate: the decision taken at the row, empty when the row is not a gate.
+
+version = 1
+
+# ---------- Step 0 ----------
+
+[[row]]
+id = "0"
+step = "thesis"
+who = "me"
+inputs = []
+outputs = ["0-start/*.md"]
+gate = "Start"
+
+# ---------- SLS ----------
+
+[[row]]
+id = "1a"
+step = "sls-1-protocol"
+who = "protocol-critic"
+inputs = ["0-start/*.md"]
+outputs = ["sls/1-protocol/need.md", "sls/1-protocol/SQ{n}.md", "sls/1-protocol/criteria.md",
+           "sls/1-protocol/quality.md", "sls/1-protocol/extraction-form.md"]
+
+[[row]]
+id = "1b"
+step = "sls-1-protocol"
+who = "skeptic"
+inputs = ["0-start/*.md", "sls/1-protocol/SQ*.md"]
+outputs = ["sls/1-protocol/SQ{n}.md", "sls/1-protocol/protocol.skeptic.md"]
+
+[[row]]
+id = "1c"
+step = "sls-1-protocol"
+who = "me"
+inputs = ["sls/1-protocol/*.md"]
+outputs = ["sls/1-protocol/changes/{date}-{slug}.md"]
+gate = "Protocol frozen"
+
+[[row]]
+id = "2a"
+step = "sls-2-search"
+who = "snowballer"
+inputs = ["sls/1-protocol/criteria.md", "sls/1-protocol/SQ*.md", "0-start/seeds.md"]
+outputs = ["sls/2-search/search-string.md", "sls/2-search/R0.md"]
+
+[[row]]
+id = "2b"
+step = "sls-2-search"
+who = "me"
+inputs = ["sls/2-search/R0.md"]
+outputs = []
+gate = "Include/exclude"
+
+[[row]]
+id = "2c"
+step = "sls-2-search"
+who = "snowballer"
+inputs = ["sls/2-search/R*.md", "sls/1-protocol/criteria.md"]
+outputs = ["sls/2-search/R{k}-backward.md", "sls/2-search/R{k}-forward.md"]
+
+[[row]]
+id = "2d"
+step = "sls-2-search"
+who = "me"
+inputs = ["sls/2-search/R*.md"]
+outputs = []
+gate = "Include/exclude"
+
+[[row]]
+id = "3a"
+step = "sls-3-reading"
+who = "reader"
+inputs = ["papers/P{n}.pdf", "sls/2-search/R*.md", "sls/1-protocol/quality.md", "sls/1-protocol/extraction-form.md",
+          "sls/1-protocol/criteria.md", "sls/1-protocol/SQ*.md", "sls/4-synthesis/C*.md"]
+outputs = ["sls/3-reading/P{n}.md", "papers/P{n}.pdf"]
+
+[[row]]
+id = "3b"
+step = "sls-3-reading"
+who = "citation-checker"
+inputs = ["sls/3-reading/P{n}.md", "papers/P{n}.pdf"]
+outputs = ["sls/3-reading/P{n}.citations.md"]
+
+[[row]]
+id = "3c"
+step = "sls-3-reading"
+who = "me"
+inputs = ["sls/3-reading/*.md"]
+outputs = []
+gate = "Record accepted"
+
+[[row]]
+id = "4a"
+step = "sls-4-synthesis"
+who = "synthesizer"
+inputs = ["sls/3-reading/P*.md", "sls/4-synthesis/C*.md"]
+outputs = ["sls/4-synthesis/C{n}.md"]
+
+[[row]]
+id = "4b"
+step = "sls-4-synthesis"
+who = "me"
+inputs = ["sls/4-synthesis/C*.md"]
+outputs = []
+gate = "Concepts accepted"
+
+[[row]]
+id = "stop"
+step = "sls"
+who = "check"
+inputs = ["sls/2-search/R*.md"]
+outputs = []
+
+[[row]]
+id = "5a"
+step = "sls-5-gap"
+who = "synthesizer"
+inputs = ["sls/4-synthesis/C*.md", "sls/1-protocol/SQ*.md"]
+outputs = ["sls/5-gap/SQ{n}.answer.md", "sls/5-gap/gap.md", "sls/5-gap/solutions.md", "sls/5-gap/history.md",
+           "sls/5-gap/limitations.md"]
+
+[[row]]
+id = "5b"
+step = "sls-5-gap"
+who = "skeptic"
+inputs = ["sls/5-gap/*.md"]
+outputs = ["sls/5-gap/gap.skeptic.md"]
+
+[[row]]
+id = "5c"
+step = "sls-5-gap"
+who = "me"
+inputs = ["sls/5-gap/*.md"]
+outputs = []
+gate = "Gap"
+
+# ---------- DSRM ----------
+
+[[row]]
+id = "6a"
+step = "dsrm-1-problem"
+who = "synthesizer"
+inputs = ["0-start/*.md", "sls/5-gap/*.md"]
+outputs = ["dsrm/1-problem/motivation.md", "dsrm/1-problem/revision.md"]
+
+[[row]]
+id = "6b"
+step = "dsrm-1-problem"
+who = "synthesizer"
+inputs = ["0-start/*.md", "dsrm/1-problem/*.md"]
+outputs = ["dsrm/1-problem/design-problem.md", "dsrm/1-problem/RQ{n}.md", "dsrm/1-problem/H{n}.md",
+           "dsrm/1-problem/stances.md", "dsrm/1-problem/stakeholders.md"]
+
+[[row]]
+id = "6c"
+step = "dsrm-1-problem"
+who = "skeptic"
+inputs = ["dsrm/1-problem/*.md"]
+outputs = ["dsrm/1-problem/problem.skeptic.md"]
+
+[[row]]
+id = "6d"
+step = "dsrm-1-problem"
+who = "me"
+inputs = ["dsrm/1-problem/*.md"]
+outputs = []
+gate = "Problem and RQs"
+
+[[row]]
+id = "7a"
+step = "dsrm-2-objectives"
+who = "me"
+inputs = ["dsrm/1-problem/RQ*.md", "sls/5-gap/solutions.md", "0-start/objectives.md"]
+outputs = ["dsrm/2-objectives/O{n}.md", "dsrm/2-objectives/metrics.md", "dsrm/2-objectives/baselines.md"]
+
+[[row]]
+id = "7b"
+step = "dsrm-2-objectives"
+who = "skeptic"
+inputs = ["dsrm/2-objectives/*.md"]
+outputs = ["dsrm/2-objectives/objectives.skeptic.md"]
+
+[[row]]
+id = "7c"
+step = "dsrm-2-objectives"
+who = "me"
+inputs = ["dsrm/2-objectives/*.md"]
+outputs = []
+gate = "Objectives frozen"
+
+[[row]]
+id = "8a"
+step = "dsrm-3-design"
+who = "designer"
+inputs = ["dsrm/2-objectives/O*.md", "sls/4-synthesis/C*.md", "sls/3-reading/P*.md", "dsrm/3-design/DEC*.md"]
+outputs = ["dsrm/3-design/DEC{n}.options.md"]
+
+[[row]]
+id = "8b"
+step = "dsrm-3-design"
+who = "me"
+inputs = ["dsrm/3-design/DEC{n}.options.md"]
+outputs = ["dsrm/3-design/DEC{n}.md"]
+gate = "Design choice"
+
+[[row]]
+id = "8c"
+step = "dsrm-3-design"
+who = "builder"
+inputs = ["dsrm/3-design/DEC*.md", "dsrm/3-design/L*.md", "dsrm/2-objectives/O*.md", "0-start/*.md", "artifact/**"]
+outputs = ["artifact/L{n}/**", "dsrm/3-design/L{n}.md"]
+
+[[row]]
+id = "8d"
+step = "dsrm-3-design"
+who = "me"
+inputs = ["dsrm/3-design/L*.md"]
+outputs = []
+gate = "Layer accepted"
+
+[[row]]
+id = "9a"
+step = "dsrm-4-demonstration"
+who = "demonstrator"
+inputs = ["dsrm/3-design/L*.md", "dsrm/2-objectives/O*.md", "0-start/*.md"]
+outputs = ["dsrm/4-demonstration/D{n}.md", "dsrm/4-demonstration/D{n}-run{k}.md"]
+
+[[row]]
+id = "9b"
+step = "dsrm-4-demonstration"
+who = "me"
+inputs = ["dsrm/4-demonstration/D*.md"]
+outputs = []
+gate = "Plan"
+
+[[row]]
+id = "9c"
+step = "dsrm-4-demonstration"
+who = "demonstrator"
+inputs = ["dsrm/4-demonstration/D*.md", "artifact/**"]
+outputs = ["dsrm/4-demonstration/D{n}-run{k}.md"]
+
+[[row]]
+id = "9d"
+step = "dsrm-4-demonstration"
+who = "me"
+inputs = ["dsrm/4-demonstration/D*-run*.md"]
+outputs = []
+gate = "Solved?"
+
+[[row]]
+id = "10a"
+step = "dsrm-5-evaluation"
+who = "evaluator"
+inputs = ["dsrm/2-objectives/*.md", "dsrm/4-demonstration/D*-run*.md"]
+outputs = ["dsrm/5-evaluation/E{n}.md", "dsrm/5-evaluation/T{n}.md"]
+
+[[row]]
+id = "10b"
+step = "dsrm-5-evaluation"
+who = "skeptic"
+inputs = ["dsrm/5-evaluation/*.md"]
+outputs = ["dsrm/5-evaluation/E{n}.skeptic.md"]
+
+[[row]]
+id = "10c"
+step = "dsrm-5-evaluation"
+who = "me"
+inputs = ["dsrm/5-evaluation/*.md"]
+outputs = []
+gate = "Results"
+
+[[row]]
+id = "iteration"
+step = "dsrm-5-evaluation"
+who = "me"
+inputs = ["dsrm/5-evaluation/E*.md"]
+outputs = []
+gate = "Iteration"
+
+[[row]]
+id = "11a"
+step = "dsrm-6-communicate"
+who = "me"
+inputs = ["**"]
+outputs = ["dsrm/6-communicate/ch{n}-{section}.outline.md"]
+gate = "Argument"
+
+[[row]]
+id = "11b"
+step = "dsrm-6-communicate"
+who = "drafter"
+inputs = ["**"]
+outputs = ["dsrm/6-communicate/ch{n}-{section}.draft.md"]
+
+[[row]]
+id = "11c"
+step = "dsrm-6-communicate"
+who = "citation-checker"
+inputs = ["**"]
+outputs = ["dsrm/6-communicate/ch{n}-{section}.citations.md"]
+
+[[row]]
+id = "11d"
+step = "dsrm-6-communicate"
+who = "examiner"
+inputs = ["**"]
+outputs = ["dsrm/6-communicate/ch{n}-{section}.examiner.md"]
+
+[[row]]
+id = "11e"
+step = "dsrm-6-communicate"
+who = "me"
+inputs = ["dsrm/6-communicate/*.md"]
+outputs = ["dsrm/6-communicate/ch{n}-{section}.md", "dsrm/6-communicate/contribution.md"]
+gate = "Text"
+
+[[row]]
+id = "hole"
+step = "dsrm-6-communicate"
+who = "me"
+inputs = ["dsrm/6-communicate/*.md"]
+outputs = []
+gate = "Iteration"
+
+# ---------- Frozen files ----------
+# Once decided, these files are never edited again, except as named.
+
+[[frozen]]
+paths = ["0-start/*.md"]
+reason = "Step 0 records where the work started; it is frozen once accepted (ai/kickstart.md)."
+
+[[frozen]]
+paths = ["sls/1-protocol/need.md", "sls/1-protocol/SQ{n}.md", "sls/1-protocol/criteria.md",
+         "sls/1-protocol/quality.md", "sls/1-protocol/extraction-form.md"]
+unless = ["sls/1-protocol/changes/{today}-*.md"]
+reason = "The protocol is frozen after its gate; a change needs a change record first (sls-1-protocol with `change`)."
+
+[[frozen]]
+paths = ["dsrm/2-objectives/O{n}.md", "dsrm/2-objectives/metrics.md", "dsrm/2-objectives/baselines.md"]
+unless = ["ai-log/decisions/{today}-iteration-*.md", "ai-log/decisions/{today}-hole-*.md"]
+reason = "Objectives, metrics and baselines are frozen before any result; only an iteration gate reopens them, recorded first (ai/flow-dsrm.md)."

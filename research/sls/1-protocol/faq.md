@@ -5,7 +5,7 @@
 
 **What makes a good review question?**
 - It asks what the literature says, not what you will build.
-- Example SQ: "Which systems provide message or actor abstractions at the operating system or hardware level?"
+- Example SQ: "Which existing systems already provide X in domain B, and how?"
 
 **Where do the selection criteria come from?**
 - From the review questions. A paper is in if it helps answer one of them.

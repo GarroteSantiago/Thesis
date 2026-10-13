@@ -7,41 +7,6 @@ default: help
 help:
     @just --list
 
-# Build thesis PDF
-build:
-    latexmk -pdf thesis.tex
-
-# Live preview (recompile on save)
-preview:
-    latexmk -pvc -pdf thesis.tex
-
-# Clean auxiliary files
-clean:
-    latexmk -c
-    rm -f thesis.pdf
-
-# Regenerate all diagrams
-diagrams:
-    dot -Tpng design/ontology/ontology.dot -o design/ontology/ontology.png
-    echo "✓ Ontology diagram"
-    @if [ -f design/language/sequence.mmd ]; then \
-        mmdc -i design/language/sequence.mmd -o design/language/sequence.png; \
-        echo "✓ Sequence diagram"; \
-    fi
-
-# Search in thesis
-search term:
-    rg "{{ term }}" chapters/ research/ --type tex --type md
-
-# Count words
-wordcount:
-    @echo "Total words:"
-    @wc -w chapters/*.tex | tail -1
-
-# List all citations
-citations:
-    @rg -o '@\w+{[^}]+}' chapters/ | sort | uniq
-
 # Check the research files against the workflow rules (ai/checks.md)
 check:
     python3 ai/tools/research.py check
@@ -50,10 +15,15 @@ check:
 views:
     python3 ai/tools/research.py views
 
+# Where the thesis stands: last commit, work in progress, progress per step (ai/status.md)
+status:
+    python3 ai/tools/research.py status
+
 # Upload the paper PDFs in research/papers/ to the "papers" GitHub release
 papers-push:
     #!/usr/bin/env bash
     set -euo pipefail
+    gh repo view >/dev/null 2>&1 || { echo "No GitHub repository linked (or gh not logged in): the PDFs stay in research/papers/ on this computer."; exit 0; }
     shopt -s nullglob
     pdfs=(research/papers/*.pdf)
     if [ ${#pdfs[@]} -eq 0 ]; then echo "No PDFs in research/papers/."; exit 0; fi
@@ -65,6 +35,7 @@ papers-push:
 papers-pull:
     #!/usr/bin/env bash
     set -euo pipefail
+    gh repo view >/dev/null 2>&1 || { echo "No GitHub repository linked (or gh not logged in): the PDFs stay in research/papers/ on this computer."; exit 0; }
     if ! gh release view papers >/dev/null 2>&1; then echo "No papers release yet."; exit 0; fi
     gh release download papers --dir research/papers --pattern '*.pdf' --clobber
     echo "Downloaded the papers release into research/papers/."
@@ -74,6 +45,10 @@ commit message:
     git add -A
     git commit -m "{{ message }}"
 
-# Full build + preview
-watch: build
-    latexmk -pvc -pdf thesis.tex
+# Assemble the accepted final sections into build/thesis.docx and build/thesis.pdf (ai/export.md)
+export:
+    python3 ai/tools/research.py export
+
+# Run the guard hook's built-in tests (ai/spec/README.md)
+guard-test:
+    python3 ai/tools/guard.py --test

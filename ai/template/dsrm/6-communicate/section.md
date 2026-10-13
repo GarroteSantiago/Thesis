@@ -9,4 +9,4 @@ inputs: [dsrm/6-communicate/ch{n}-{section}.draft.md, ch{n}-{section}.citations.
 
 Saved as `ch{n}-{section}.md`. Final text, in my words.
 
-{Prose, with citations.}
+{Prose, with citations as `[@P12, p. 4]`.}

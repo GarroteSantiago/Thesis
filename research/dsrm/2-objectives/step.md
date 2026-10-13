@@ -6,6 +6,14 @@
 > - **Quantitative:** how a desirable solution would be better than current ones.
 > - **Qualitative:** how the artifact is expected to support solutions to problems not addressed before.
 
+## In plain words
+I say what success looks like: what the artifact must achieve, what is measured, and what it is compared against. These are fixed before any result is seen, so the goalposts cannot move later.
+
+- **I write:** the objectives, metrics and baselines, in my words. The AI only writes them down and asks about anything left empty.
+- **The AI:** the skeptic critiques them.
+- **I decide:** each objective, the metrics and the baselines.
+- **Result:** the objectives, frozen until an evaluation sends us back.
+
 ## Rules
 - Rigor aid (mine, not Peffers'): every objective says how it will be checked, so step 5 has something to compare against.
 - Objectives, metrics and baselines are frozen before any result is seen.

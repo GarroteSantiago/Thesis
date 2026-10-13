@@ -12,7 +12,12 @@ Templates are the only files allowed to contain placeholders.
 ## Files
 | Template | Saved as | Row | Who |
 |---|---|---|---|
-| `0-start/observation.md` | `0-start/observation.md` | 0 | me |
+| `project.md` | `../ai/project.md` (project settings, at setup) | setup | me |
+| `0-start/observation.md` | `0-start/observation.md` (problem-centred) | 0 | me |
+| `0-start/objectives.md` | `0-start/objectives.md` (objective-centred) | 0 | me |
+| `0-start/artifact.md` | `0-start/artifact.md` (design-centred) | 0 | me |
+| `0-start/context.md` | `0-start/context.md` (context-initiated, client engagement) | 0 | me |
+| `0-start/solution.md` | `0-start/solution.md` (context-initiated, retroactive) | 0 | me |
 | `0-start/seeds.md` | `0-start/seeds.md` (optional) | 0 | me |
 | `0-start/notes.md` | `0-start/notes.md` (optional) | 0 | me |
 | `sls/1-protocol/need.md` | `sls/1-protocol/need.md` | 1a | `protocol-critic` |

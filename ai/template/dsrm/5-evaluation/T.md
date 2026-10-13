@@ -7,8 +7,8 @@ inputs: [dsrm/5-evaluation/E*.md]
 ---
 # T{n}
 
-## Category (Wohlin et al.)
-{conclusion | internal | construct | external}
+## Category
+{one of the threat categories of the profile (`ai/profiles/`)}
 
 ## Threat
 {}
