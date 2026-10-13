@@ -123,7 +123,7 @@ def template_for(rel: str):
             return TEMPLATE / "reviews" / f"{kind}.md"
     if folder == "sls/1-protocol/changes":
         return TEMPLATE / "sls" / "1-protocol" / "change.md"
-    if folder == "sls/2-search" and re.fullmatch(r"R\d+(-backward|-forward)?\.md", name):
+    if folder == "sls/2-search" and re.fullmatch(r"R\d+(-backward|-forward)?(-\d+)?\.md", name):
         return TEMPLATE / folder / "R.md"
     if folder == "dsrm/4-demonstration" and re.fullmatch(r"D\d+-run\d+\.md", name):
         return TEMPLATE / folder / "D-run.md"
@@ -284,7 +284,7 @@ def stale_sections(docs):
 
 
 def stop_rule(docs) -> str:
-    rounds = [d for d in docs if re.fullmatch(r"sls/2-search/R\d+(-backward|-forward)?\.md", d.rel)]
+    rounds = [d for d in docs if re.fullmatch(r"sls/2-search/R\d+(-backward|-forward)?(-\d+)?\.md", d.rel)]
     if not rounds:
         return "no rounds yet"
     k = max(num(d.rel.split("/")[-1]) for d in rounds)

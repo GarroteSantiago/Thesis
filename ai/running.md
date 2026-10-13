@@ -40,10 +40,10 @@ Dispatch the row's agent with the Agent tool (`subagent_type` = the agent's name
 Independent dispatches run in parallel (e.g. one `reader` per paper in row 3a). When the agent returns, check its outputs against the agent contract (`ai/agent-contract.md`, *Your output is done when*). A missing file or a leftover placeholder goes back to the agent once, then to me as an open issue.
 
 ### Large batches
-Before dispatching more than 10 agents in one row (e.g. one `reader` per paper), ask me first, with a decision card (`ai/gate.md`):
+Before a row that dispatches more than 10 agents (e.g. one `reader` per paper), or gives one agent more than 20 items of work (e.g. a snowballing round over 280 papers, which can bring thousands of candidates), ask me first, with a decision card (`ai/gate.md`):
 - how many agents, and roughly how much usage it costs, in the plain terms of my plan (a large batch can use up a usage limit or a budget);
 - how many decisions it will bring me at the gate;
-- options: all at once; a first batch of about 10, the most central first, so the result can be checked before the rest; or a number I choose.
+- options: all at once; a first batch of about 10 (agents or items), the most central first, so the result can be checked before the rest; or a number I choose.
 
 ## Rows by me
 Rows whose *Who* is me and that write files (0, 7a, 8b, 11a, 11e). Show me the row's input files, ask for the content, and write each output from its template using my words only, with `by: me`. Where my words leave a template field empty, ask; the field stays mine. Rows by me that are not gates (row 0) end with a commit, as a gate does (`ai/gate.md`, step 7).

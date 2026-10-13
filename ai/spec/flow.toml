@@ -67,7 +67,7 @@ id = "2c"
 step = "sls-2-search"
 who = "snowballer"
 inputs = ["sls/2-search/R*.md", "sls/1-protocol/criteria.md"]
-outputs = ["sls/2-search/R{k}-backward.md", "sls/2-search/R{k}-forward.md"]
+outputs = ["sls/2-search/R{k}-backward*.md", "sls/2-search/R{k}-forward*.md"]
 
 [[row]]
 id = "2d"

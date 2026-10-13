@@ -11,7 +11,7 @@ Rows run by the `sls` skill (`skills.md`), after step 0 (`kickstart.md`). Paths 
 | **SLS 2 Search** · `sls-2-search` | | | | |
 | 2a | `snowballer` | `sls/1-protocol/criteria.md`, `sls/1-protocol/SQ*.md`, `0-start/seeds.md` | `sls/2-search/search-string.md`, `R0.md` (candidates, each with its I/X criterion) | — |
 | 2b | Me | `sls/2-search/R0.md` | P IDs assigned in `R0.md` | **Include/exclude** |
-| 2c | `snowballer` | `sls/2-search/R{k-1}*.md`, `sls/1-protocol/criteria.md` | `sls/2-search/R{k}-backward.md`, `R{k}-forward.md` | — |
+| 2c | `snowballer` | `sls/2-search/R{k-1}*.md`, `sls/1-protocol/criteria.md` | `sls/2-search/R{k}-backward*.md`, `R{k}-forward*.md` (one pair per batch: `R{k}-backward.md`, `R{k}-backward-2.md`…) | — |
 | 2d | Me | 2c files | P IDs assigned | **Include/exclude** |
 | **SLS 3 Reading** · `sls-3-reading` (for each new P) | | | | |
 | 3a | `reader` | `papers/P{n}.pdf` (else the paper online), `sls/1-protocol/quality.md`, `extraction-form.md`, `criteria.md`, `SQ*.md`, accepted `sls/4-synthesis/C*.md` once any exist | `sls/3-reading/P{n}.md`, `papers/P{n}.pdf` if downloaded | — |

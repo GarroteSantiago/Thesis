@@ -569,6 +569,7 @@ def _test():
             ("snowballer runs a script writing its round", "snowballer", "Bash", {"command": "cd /tmp && python3 - <<'EOF'\nopen('" + r("sls/2-search/R1-backward.md") + "','w').write('x')\nEOF"}, True),
             ("reader reads a method doc", "reader", "Read", {"file_path": r("sls/3-reading/step.md")}, True),
             ("reader downloads into papers after cd", "reader", "Bash", {"command": f"cd {r('papers')}; curl -sL -o P4.pdf https://x"}, True),
+            ("snowballer writes a second batch", "snowballer", "Write", {"file_path": r("sls/2-search/R1-backward-2.md"), "content": md("proposed")}, True),
             ("reader downloads into a concept", "reader", "Bash", {"command": f"curl -sL -o {r('sls/4-synthesis/C1.md')} https://x"}, False),
             ("reader fetches with a user agent", "reader", "Bash", {"command": "S=/tmp/x; mkdir -p $S/img; cd $S; curl -sL -A \"Mozilla/5.0\" -o rg.pdf https://a.b/c.pdf"}, True),
             ("reader seds its record with slashes", "reader", "Bash", {"command": f"sed -i 's/(title page, p. i)/(p. 3)/' {r('sls/3-reading/P1.md')}"}, True),

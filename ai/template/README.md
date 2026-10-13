@@ -27,7 +27,7 @@ Templates are the only files allowed to contain placeholders.
 | `sls/1-protocol/extraction-form.md` | `sls/1-protocol/extraction-form.md` | 1a | `protocol-critic` |
 | `sls/1-protocol/change.md` | `sls/1-protocol/changes/{date}-{slug}.md` | after 1c | me |
 | `sls/2-search/search-string.md` | `sls/2-search/search-string.md` | 2a | `snowballer` |
-| `sls/2-search/R.md` | `sls/2-search/R0.md`, `R{k}-backward.md`, `R{k}-forward.md` | 2a, 2c | `snowballer` |
+| `sls/2-search/R.md` | `sls/2-search/R0.md`, `R{k}-backward.md`, `R{k}-forward.md` (and `-2`, `-3`… per batch) | 2a, 2c | `snowballer` |
 | `sls/3-reading/P.md` | `sls/3-reading/P{n}.md` | 3a | `reader` |
 | `sls/4-synthesis/C.md` | `sls/4-synthesis/C{n}.md` | 4a | `synthesizer` |
 | `sls/5-gap/SQ.answer.md` | `sls/5-gap/SQ{n}.answer.md` | 5a | `synthesizer` |

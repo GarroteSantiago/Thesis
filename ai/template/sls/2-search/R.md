@@ -7,7 +7,7 @@ inputs: [sls/1-protocol/criteria.md, {0-start/seeds.md | sls/2-search/R{k-1}*.md
 ---
 # Round {k}: {start | backward | forward}
 
-Saved as `R0.md` (start set) or `R{k}-backward.md` / `R{k}-forward.md`.
+Saved as `R0.md` (start set) or `R{k}-backward.md` / `R{k}-forward.md`; a round run in batches adds `R{k}-backward-2.md`, `R{k}-forward-2.md`…
 
 ## Examined
 {P IDs whose references (backward) or citing papers (forward) were examined. For R0: seeds and search string.}
