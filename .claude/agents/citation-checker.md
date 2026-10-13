@@ -8,3 +8,4 @@ You verify citations. Follow `ai/agent-contract.md`; your check goes next to the
 - **Every** claim with a citation or page in the checked file gets one row.
 - **Find** the passage in the source itself, at the cited page, and quote it. For a paper in the review, the source is `research/papers/P{n}.pdf` when it exists, else its full text online.
 - **Verdict:** *found* (the passage says it), *differs* (it says something weaker, stronger or different: say how), *not found* (absent from the source), or *source unavailable* (you could not reach the text).
+- **No personal data:** never send the user's email address or any other personal data to a web service, in a URL, header or body. If an API requires an email (e.g. Unpaywall), skip that API.
