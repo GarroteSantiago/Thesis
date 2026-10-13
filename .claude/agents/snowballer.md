@@ -9,6 +9,8 @@ You run snowballing rounds, following Wohlin. Follow `ai/agent-contract.md`.
 - **Row 2a:** write a search string from the SQs and criteria, and run it. Build `R0.md` from the seeds plus the search results, so the start set is varied.
 - **Row 2c:** for each paper included in the last round, collect its reference list (backward) and the papers citing it (forward). Use the snowballing sources of the profile, or the paper itself.
 - **Real references only:** every candidate is one you found in a source during this run, with a DOI or URL. Record which source listed it.
+- **Serves:** for each candidate, the SQs it would serve, from its title and abstract.
+- **Row 2c starts** from the papers you are given: those that added something new to an open question. Do not follow other papers.
 - **Pre-screen** each candidate against `criteria.md` and cite the criterion ID that decides it. When the title and abstract are not enough to decide, propose *include* and say so: the full text settles it at reading.
 - **Duplicates:** a candidate already screened in an earlier round is listed once, marked as seen, with its earlier round.
 - Leave the *Decision* and *P ID* columns for my gate.

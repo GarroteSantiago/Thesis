@@ -66,7 +66,7 @@ gate = "Include/exclude"
 id = "2c"
 step = "sls-2-search"
 who = "snowballer"
-inputs = ["sls/2-search/R*.md", "sls/1-protocol/criteria.md"]
+inputs = ["sls/2-search/R*.md", "sls/1-protocol/criteria.md", "sls/1-protocol/SQ*.md", "sls/4-synthesis/SQ*.coverage.md"]
 outputs = ["sls/2-search/R{k}-backward*.md", "sls/2-search/R{k}-forward*.md"]
 
 [[row]]
@@ -82,7 +82,7 @@ id = "3a"
 step = "sls-3-reading"
 who = "reader"
 inputs = ["papers/P{n}.pdf", "sls/2-search/R*.md", "sls/1-protocol/quality.md", "sls/1-protocol/extraction-form.md",
-          "sls/1-protocol/criteria.md", "sls/1-protocol/SQ*.md", "sls/4-synthesis/C*.md"]
+          "sls/1-protocol/criteria.md", "sls/1-protocol/SQ*.md", "sls/4-synthesis/C*.md", "sls/3-reading/P{n}.md"]
 outputs = ["sls/3-reading/P{n}.md", "papers/P{n}.pdf"]
 
 [[row]]
@@ -104,8 +104,8 @@ gate = "Record accepted"
 id = "4a"
 step = "sls-4-synthesis"
 who = "synthesizer"
-inputs = ["sls/3-reading/P*.md", "sls/4-synthesis/C*.md"]
-outputs = ["sls/4-synthesis/C{n}.md"]
+inputs = ["sls/3-reading/P*.md", "sls/4-synthesis/*.md", "sls/1-protocol/SQ*.md", "sls/2-search/R*.md"]
+outputs = ["sls/4-synthesis/C{n}.md", "sls/4-synthesis/SQ{n}.coverage.md"]
 
 [[row]]
 id = "4b"
@@ -119,14 +119,14 @@ gate = "Concepts accepted"
 id = "stop"
 step = "sls"
 who = "check"
-inputs = ["sls/2-search/R*.md"]
+inputs = ["sls/2-search/R*.md", "sls/4-synthesis/SQ*.coverage.md"]
 outputs = []
 
 [[row]]
 id = "5a"
 step = "sls-5-gap"
 who = "synthesizer"
-inputs = ["sls/4-synthesis/C*.md", "sls/1-protocol/SQ*.md"]
+inputs = ["sls/4-synthesis/*.md", "sls/1-protocol/SQ*.md", "sls/2-search/R*.md"]
 outputs = ["sls/5-gap/SQ{n}.answer.md", "sls/5-gap/gap.md", "sls/5-gap/solutions.md", "sls/5-gap/history.md",
            "sls/5-gap/limitations.md"]
 

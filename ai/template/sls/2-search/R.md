@@ -13,9 +13,9 @@ Saved as `R0.md` (start set) or `R{k}-backward.md` / `R{k}-forward.md`; a round 
 {P IDs whose references (backward) or citing papers (forward) were examined. For R0: seeds and search string.}
 
 ## Candidates
-| Reference | Proposed | Criterion | Decision | P ID |
-|---|---|---|---|---|
-| {Authors (year). *Title*. Venue.} | {include / exclude} | {I_ / X_} | {set at gate 2b / 2d} | {assigned if included} |
+| Reference | Proposed | Criterion | Serves | Decision | P ID |
+|---|---|---|---|---|---|
+| {Authors (year). *Title*. Venue.} | {include / exclude} | {I_ / X_} | {SQ IDs it would serve, from title and abstract} | {set at gate 2b / 2d} | {assigned if included} |
 
 ## Newly included
 {P IDs, or "none": the stop rule is met.}

@@ -30,6 +30,12 @@ inputs: [sls/1-protocol/quality.md, sls/1-protocol/extraction-form.md]
 |---|---|---|
 | {field from extraction-form.md} | {value} | {p.} |
 
+## Serves
+Every review question this paper serves, and what it contributes to that question's answer.
+| SQ | What it contributes | Page |
+|---|---|---|
+| SQ{n} | {the instance, kind or finding it adds, in one line, in the unit of the SQ} | {p.} |
+
 ## Concepts
 | Concept | What the paper says | Page |
 |---|---|---|

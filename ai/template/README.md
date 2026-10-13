@@ -30,6 +30,7 @@ Templates are the only files allowed to contain placeholders.
 | `sls/2-search/R.md` | `sls/2-search/R0.md`, `R{k}-backward.md`, `R{k}-forward.md` (and `-2`, `-3`… per batch) | 2a, 2c | `snowballer` |
 | `sls/3-reading/P.md` | `sls/3-reading/P{n}.md` | 3a | `reader` |
 | `sls/4-synthesis/C.md` | `sls/4-synthesis/C{n}.md` | 4a | `synthesizer` |
+| `sls/4-synthesis/SQ.coverage.md` | `sls/4-synthesis/SQ{n}.coverage.md` | 4a | `synthesizer` |
 | `sls/5-gap/SQ.answer.md` | `sls/5-gap/SQ{n}.answer.md` | 5a | `synthesizer` |
 | `sls/5-gap/gap.md` | `sls/5-gap/gap.md` | 5a | `synthesizer` |
 | `sls/5-gap/solutions.md` | `sls/5-gap/solutions.md` | 5a | `synthesizer` |

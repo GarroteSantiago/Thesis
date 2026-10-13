@@ -15,6 +15,8 @@ Instead of summarising paper by paper, we organise what was read by idea (concep
 
 ## Rules
 - The matrix is generated from the concepts in each `P{n}.md` (`just views`), never written by hand.
+- **Coverage, per question:** `SQ{n}.coverage.md` lists the papers read for that question in reading order, marks each contribution *new* or *covered by* an earlier paper, applies the question's enough-when rule (`1-protocol/step.md`), and lists what to read next, what is deferred, and the audit. A review is nearing completion when new papers stop adding new concepts [1]; the coverage files apply that test question by question.
+- `just views` builds the paper × question matrix (`views/paper-questions.md`) and the coverage summary (`views/coverage.md`) from these files.
 
 ## Produces
 Template in `ai/template/sls/4-synthesis/`. Flow rows 4a–4b (`ai/flow-sls.md`).
@@ -22,6 +24,7 @@ Template in `ai/template/sls/4-synthesis/`. Flow rows 4a–4b (`ai/flow-sls.md`)
 | File | Holds |
 |---|---|
 | `C{n}.md` | One concept: definition, and what the papers say, compared |
+| `SQ{n}.coverage.md` | One question: the papers read for it and what each added, its status, what to read next, what is deferred |
 
 ---
 

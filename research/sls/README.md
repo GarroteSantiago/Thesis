@@ -13,7 +13,8 @@ A systematic review following Kitchenham and Charters [1], with snowballing as t
 
 ## Sequence
 - 1 → 2 → 3 → 4 → 5. Steps 2–4 repeat per paper until the search stops.
-- **Stop rule:** snowballing ends when an iteration finds no new papers [2].
+- **Stop rule:** snowballing ends when every review question has what it needs (complete or saturated, `1-protocol/step.md`, *How much each question needs*), or when an iteration finds no new papers [2].
+- **Depth follows need:** papers are read in full when they can still change an answer; the others are deferred, listed and counted (`3-reading/step.md`).
 - **Protocol first:** the protocol is written before searching, so selection does not bend to what you hoped to find [1]. Any later change to it is logged with its reason.
 
 ## IDs

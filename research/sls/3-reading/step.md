@@ -14,6 +14,9 @@ Each paper let in is read and summarised the same way: what kind of paper it is,
 
 ## Rules
 - Every extracted value and concept has a page.
+- **Serves:** every record states each SQ the paper serves and what it contributes, in that SQ's unit, with page. This is the link from each paper to each question.
+- **Depth follows need:** the papers read are those serving an open question, in its reading order (`4-synthesis/SQ{n}.coverage.md`, *To read next*), the key papers, and the audit draws. An included paper whose questions are all saturated or complete is **deferred**: it stays in the review, listed with its questions, and is read if one of them reopens. This departs from assessing every included study [2]; the limitations report, per question, papers found, read, deferred and audited.
+- **Nothing that could change an answer is deferred:** a paper whose screening suggests a contribution not yet in its question's coverage is read (contradiction trigger), and for each saturated question a few deferred papers are drawn at random and read; if one adds something new, the question reopens.
 - Papers my argument depends on (key papers) are read in full by me. A paper is key if it passes at least one test:
   1. **Sole or main evidence:** it is the only paper, or one of very few, answering an SQ.
   2. **Load-bearing claim:** the problem or the gap rests on a claim it makes.
@@ -26,7 +29,7 @@ Template in `ai/template/sls/3-reading/`. Flow rows 3a–3c (`ai/flow-sls.md`).
 
 | File | Holds |
 |---|---|
-| `P{n}.md` | The record of one paper: five Cs, quality, extracted fields, concepts |
+| `P{n}.md` | The record of one paper: five Cs, quality, extracted fields, the questions it serves and what it adds to each, concepts |
 | `P{n}.citations.md` | The citation check of that record |
 
 ---

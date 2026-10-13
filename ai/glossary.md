@@ -37,6 +37,13 @@ Plain meanings of the words the workflow uses. Skills give the meaning of a term
 | Concept (C) | An idea several papers talk about. The review is organised by concepts, comparing what each paper says about them. |
 | Concept matrix | A table of papers against concepts, showing who covers what. Empty areas hint at the gap. |
 | Gap | What no paper covers, or covers only in part. The thesis aims at it. |
+| Census, kinds, evidence | The three kinds of review question. A *census* question needs every instance (every system that does X); a *kinds* question needs every kind of instance; an *evidence* question needs what the evidence says. The kind decides how many papers a question needs. |
+| Enough when | A question's rule for when it has what it needs, set before any search: every instance covered (census), or saturation (kinds, evidence). |
+| Saturation | The point where reading more papers stops adding anything new to a question: here, at least 10 papers read, then 3 in a row with nothing new. |
+| Serves | Which review questions a paper helps answer, and with what. Recorded for every candidate and every reading record: the link from each paper to each question. |
+| Coverage | For one question: the papers read for it and what each added, whether it is open, saturated or complete, what to read next and what is deferred. |
+| Deferred paper | An included paper not read in full because every question it serves already has what it needs. It stays in the review, listed and counted, and is read if a question reopens. |
+| Audit | A few deferred papers drawn at random and read, to test that a saturated question really had nothing more to learn. |
 
 ## Design science (DSRM)
 | Term | Meaning |

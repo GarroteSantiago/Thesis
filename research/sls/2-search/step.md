@@ -13,11 +13,12 @@ We find the papers. First a start set: my seed papers plus a database search. Th
 
 ## Rules
 - **Start set:** seeds plus a database search, so it is varied [1].
-- **Each round** examines only the papers included in the previous one.
+- **Each round** examines only the papers included in the previous one that added something new to a question still open (`4-synthesis/SQ{n}.coverage.md`). A paper that added nothing, or serves only questions already answered enough, is not followed.
+- **Serves:** every candidate is screened for the SQs it would serve, recorded in the round file.
   - **Backward:** the reference list of each paper.
   - **Forward:** the papers that cite it.
 - **Screening** applies only the criteria in `1-protocol/criteria.md`.
-- **Stop** when a round includes no new papers [1].
+- **Stop** when every question is complete or saturated (`1-protocol/step.md`, *How much each question needs*), or when a round includes no new papers [1].
 - Papers get P IDs in the order they are first included. Never renumber.
 
 ## Produces

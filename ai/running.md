@@ -11,7 +11,7 @@ Every session must be logged (`ai/ai-log.md`). The session start hook adds a lin
 > The AI log is not running, so nothing done in this session would be recorded. Usually this means Claude Code was started outside the thesis environment. To fix it: close Claude Code, open a terminal in the thesis folder, run `direnv allow` (only needed once), check that `python3 --version` prints a version, then start Claude Code again from that same terminal.
 
 ## Before anything: the checks
-Run `just check`. If it reports problems, explain each one in plain words before running any row, and fix them first. A fix to a decided file is a change to it: ask me with a decision card, record the decision, then apply it (`ai/gate.md`, row `fix`). A problem the work in progress explains (a gate not yet decided) is only reported.
+Run `just check`. If it reports problems, explain each one in plain words before running any row, and fix them first. A fix to a decided file is a change to it: ask me with a decision card, record the decision, then apply it (`ai/gate.md`, row `fix`). Where the check names a procedure (for example `/sls-1-protocol need`), offer that procedure instead of fixing files one by one. A problem the work in progress explains (a gate not yet decided) is only reported.
 
 ## This thesis's own rules
 Before running a step, read `ai/project.md`. Its *Rules for this thesis* refine the workflow for this thesis: where one differs from a step's instructions, the rule wins. When you apply one, say so in plain words ("this thesis also searches the IEEE library, as its project settings say"). Its *Notes for this thesis* are leads to pass to agents where they help, not evidence.

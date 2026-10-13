@@ -9,4 +9,4 @@ inputs: [sls/1-protocol/*.md, sls/2-search/*.md]
 
 | Limitation | How it could bias the result |
 |---|---|
-| {e.g. one database, English only, seeds chosen by me} | {} |
+| {e.g. one database, English only, seeds chosen by me; papers deferred under each question's enough-when rule, with counts found / read / deferred / audited} | {} |

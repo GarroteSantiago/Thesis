@@ -227,6 +227,7 @@ def assigned_papers(docs):
 
 TRACE = {
     # file kind: [(section, ID pattern), ...]
+    "P": [("Serves", r"SQ\d+")],
     "O": [("Traces to", r"RQ\d+")],
     "H": [("Tested by", r"RQ\d+")],
     "D": [("Feeds", r"O\d+"), ("Artifact layer", r"L\d+")],
@@ -331,6 +332,85 @@ def check_spec(errors):
             errors.append(f"ai/spec/flow.toml: row {rid} is in no flow table")
 
 
+# ---------- need: papers per question (research/sls/1-protocol/step.md, *How much each question needs*) ----------
+
+COVERAGE_STATES = ("open", "saturated", "complete")
+
+
+def questions(docs):
+    """Live SQs: id -> (question, kind)."""
+    out = {}
+    for d in docs:
+        if re.fullmatch(r"sls/1-protocol/SQ\d+\.md", d.rel) and d.status in LIVE | {"proposed"}:
+            kind = (re.findall(r"\b(census|kinds|evidence)\b", d.section("Kind")) or [""])[0]
+            out[d.id] = (d.section("Question").strip().splitlines()[0] if d.section("Question").strip() else "", kind)
+    return dict(sorted(out.items(), key=lambda kv: num(kv[0])))
+
+
+def coverage(docs):
+    """SQ id -> what its coverage file says: status, papers read (new or not), to read next, deferred, audit."""
+    out = {}
+    for d in docs:
+        m = re.fullmatch(r"sls/4-synthesis/(SQ\d+)\.coverage\.md", d.rel)
+        if not m or d.status in ("rejected", "retired"):
+            continue
+        read = [(r.get("Paper", ""), r.get("New?", "").lower().startswith("new")) for r in tables(d.section("Read"))]
+        state = (re.findall(r"\b(open|saturated|complete)\b", d.section("Status")) or [""])[0]
+        out[m.group(1)] = {
+            "doc": d, "state": state, "decided": d.status in LIVE,
+            "read": [((re.findall(r"P\d+", p) or [""])[0], new) for p, new in read],
+            "next": re.findall(r"\bP\d+\b", d.section("To read next")),
+            "deferred": re.findall(r"\bP\d+\b", d.section("Deferred")),
+            "audit": d.section("Audit").strip(),
+        }
+    return out
+
+
+def serves_by_paper(docs):
+    """P ID -> SQs it serves: from its reading record, else from its row in the round files."""
+    out = {}
+    for d in docs:
+        if not re.fullmatch(r"sls/2-search/R\d+(-backward|-forward)?(-\d+)?\.md", d.rel):
+            continue
+        for row in tables(d.section("Candidates")):
+            pid = row.get("P ID", "").strip()
+            if re.fullmatch(r"P\d+", pid):
+                out.setdefault(pid, set()).update(re.findall(r"SQ\d+", row.get("Serves", "")))
+    for d in docs:
+        if re.fullmatch(r"sls/3-reading/P\d+\.md", d.rel) and d.section("Serves").strip():
+            out[d.id] = set(re.findall(r"SQ\d+", d.section("Serves")))
+    return out
+
+
+def need_summary(docs) -> str:
+    cov, qs = coverage(docs), questions(docs)
+    if not qs:
+        return "no review questions yet"
+    if not cov:
+        return f"{len(qs)} questions, no coverage yet: every included paper waits to be read"
+    done = [q for q in qs if cov.get(q, {}).get("state") in ("saturated", "complete") and cov[q]["decided"]]
+    open_ = [q for q in qs if q not in done]
+    waiting = sorted({p for q in open_ for p in cov.get(q, {}).get("next", [])}, key=num)
+    deferred = sorted({p for c in cov.values() for p in c["deferred"]} - set(waiting), key=num)
+    papers = lambda k: f"{k} paper" + ("" if k == 1 else "s")
+    return (f"{len(done)} of {len(qs)} questions have what they need; {len(open_)} open; "
+            f"{papers(len(waiting))} to read next, {len(deferred)} deferred")
+
+
+def check_coverage(docs, errors):
+    assigned = assigned_papers(docs)
+    qs = questions(docs)
+    for sq, c in coverage(docs).items():
+        rel = c["doc"].rel
+        if sq not in qs:
+            errors.append(f"{rel}: there is no live {sq}")
+        if c["state"] not in COVERAGE_STATES:
+            errors.append(f"{rel}: *Status* must start with open, saturated or complete")
+        for p in [p for p, _ in c["read"]] + c["next"] + c["deferred"]:
+            if p and p not in assigned:
+                errors.append(f"{rel}: names {p}, which no round file assigns")
+
+
 def check_papers(docs, errors):
     """Every P ID cell of a round file holds an ID or nothing, and every reading record's paper was let in by a round."""
     for d in docs:
@@ -353,6 +433,7 @@ def check(_args):
     errors = []
     check_spec(errors)
     check_papers(docs, errors)
+    check_coverage(docs, errors)
     check_status(docs, errors)
     check_complete(docs, errors)
     check_decisions(docs, errors)
@@ -363,6 +444,13 @@ def check(_args):
 
     print(f"Checked {len(docs)} files.")
     print(f"Stop rule: {stop_rule(docs)}.")
+    print(f"Questions: {need_summary(docs)}.")
+    need_gaps = [e for e in errors if re.search(r"sls/1-protocol/SQ\d+\.md: missing section '## (Kind|Unit|Enough when|Reading order)'"
+                                                r"|sls/3-reading/P\d+\.md: missing section '## Serves'", e)]
+    if need_gaps:
+        errors = [e for e in errors if e not in need_gaps]
+        errors.append(f"{len(need_gaps)} sections are missing because this review started before each question stated what it needs "
+                      "and each record which questions it serves: adopt it with `/sls-1-protocol need` (research/sls/1-protocol/step.md)")
     if errors:
         print(f"\n{len(errors)} problem(s):")
         for e in errors:
@@ -477,12 +565,54 @@ def view_ai_usage(docs):
             + f"\nLogged sessions: {sessions}.\n")
 
 
+def view_paper_questions(docs):
+    """The link from each paper to each question: one row per included paper, one column per question."""
+    qs, cov, serves = questions(docs), coverage(docs), serves_by_paper(docs)
+    mark = {}
+    for sq, c in cov.items():
+        for p, new in c["read"]:
+            mark[(p, sq)] = "+" if new else "="
+        for p in c["next"]:
+            mark.setdefault((p, sq), "→")
+        for p in c["deferred"]:
+            mark.setdefault((p, sq), "d")
+    rows, none = [], []
+    for pid, info in sorted(assigned_papers(docs).items(), key=lambda kv: num(kv[0])):
+        sqs = serves.get(pid, set()) | {sq for (p, sq) in mark if p == pid}
+        if not sqs:
+            none.append(pid)
+        cells = [mark.get((pid, sq), "·" if sq in sqs else "") for sq in qs]
+        rows.append([f"{pid} {info['reference'][:50]}"] + cells)
+    legend = ("`+` read, added something new · `=` read, nothing new for this question · `→` to read next · "
+              "`d` deferred: the question has what it needs · `·` serves it, not yet in its coverage")
+    tail = (f"\n**Serving no question ({len(none)}):** " + ", ".join(none) + "\n") if none else ""
+    return ("# Papers and questions\n\n" + HEADER + "\n" + legend + "\n\n"
+            + table(["Paper"] + list(qs), rows) + tail)
+
+
+def view_coverage(docs):
+    qs, cov = questions(docs), coverage(docs)
+    rows = []
+    for sq, (question, kind) in qs.items():
+        c = cov.get(sq)
+        if not c:
+            rows.append([sq, question[:70], kind or "?", "no coverage yet", "", "", "", ""])
+            continue
+        state = c["state"] + ("" if c["decided"] else " (proposed)")
+        rows.append([sq, question[:70], kind or "?", state, len(c["read"]), sum(1 for _, n in c["read"] if n),
+                     len(c["next"]), len(c["deferred"])])
+    return ("# Coverage\n\n" + HEADER + "\nWhether each review question has what it needs "
+            "(`research/sls/1-protocol/step.md`, *How much each question needs*). " + need_summary(docs) + ".\n\n"
+            + table(["SQ", "Question", "Kind", "Status", "Read", "Added something", "To read next", "Deferred"], rows))
+
+
 def views(_args):
     docs = produced_docs()
     VIEWS.mkdir(exist_ok=True)
     for name, build in (("papers", view_papers), ("concept-matrix", view_concepts),
                         ("traceability", view_traceability), ("chapters", view_chapters),
-                        ("ai-usage", view_ai_usage)):
+                        ("ai-usage", view_ai_usage), ("paper-questions", view_paper_questions),
+                        ("coverage", view_coverage)):
         (VIEWS / f"{name}.md").write_text(build(docs), encoding="utf-8")
         print(f"research/views/{name}.md")
     return 0
@@ -564,7 +694,7 @@ def steps(docs):
     }
     extra = {
         "S2": stop_rule(docs),
-        "S3": f"{read} of {len(papers)} papers in the review have a decided reading record",
+        "S3": f"{read} of {len(papers)} papers in the review have a decided reading record; {need_summary(docs)}",
         "D5": f"{len(met)} of {len(objectives)} objectives met" if objectives else "",
         "D6": f"{len(finals)} final sections" if finals else "",
     }
