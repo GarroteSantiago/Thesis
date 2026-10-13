@@ -16,15 +16,15 @@ Rows run by the `sls` skill (`skills.md`), after step 0 (`kickstart.md`). Paths 
 | **SLS 3 Reading** · `sls-3-reading` (for each new P) | | | | |
 | 3a | `reader` | `papers/P{n}.pdf` (else the paper online), `sls/1-protocol/quality.md`, `extraction-form.md`, accepted `sls/4-synthesis/C*.md` once any exist | `sls/3-reading/P{n}.md`, `papers/P{n}.pdf` if downloaded | — |
 | 3b | `citation-checker` | `sls/3-reading/P{n}.md`, the paper | `sls/3-reading/P{n}.citations.md` | — |
-| 3c | Me | 3a + 3b files | Status set; key papers read in full; PDFs published with `just papers-push` | **Record accepted** |
+| 3c | Me | 3a + 3b files | Status set; key papers proposed (`sls/3-reading/step.md`); PDFs published with `just papers-push` | **Record accepted** |
 | **SLS 4 Synthesis** · `sls-4-synthesis` | | | | |
 | 4a | `synthesizer` | Accepted `sls/3-reading/P*.md`, `sls/4-synthesis/C*.md` | `sls/4-synthesis/C{n}.md` (definition, papers, comparison), new or updated | — |
-| 4b | Me | 4a files | Status set; merges and splits | **Concepts accepted** |
+| 4b | Me | 4a files | Status set; merges and splits; key papers updated | **Concepts accepted** |
 | ↺ | `just check` | Last `sls/2-search/R{k}*.md` | New papers? Yes → 2c. No → 5a | Stop rule [1] |
 | **SLS 5 Gap** · `sls-5-gap` | | | | |
 | 5a | `synthesizer` | Accepted `sls/4-synthesis/C*.md`, `sls/1-protocol/SQ*.md` | `sls/5-gap/`: `SQ{n}.answer.md`, `gap.md`, `solutions.md`, `history.md`, `limitations.md` | — |
 | 5b | `skeptic` | 5a files | `sls/5-gap/gap.skeptic.md` | — |
-| 5c | Me | 5a + 5b files | Status set | **Gap** |
+| 5c | Me | 5a + 5b files | Status set; key papers extended from `gap.md` and read in full | **Gap** |
 
 Next: row 6a (`flow-dsrm.md`).
 
