@@ -10,7 +10,7 @@
 Instead of summarising paper by paper, we organise what was read by idea (concept): what each paper says about it, where they agree, where they disagree, what nobody covers.
 
 - **The AI:** proposes new concepts and updates existing ones from the accepted records.
-- **I decide:** each new or changed concept, and any merge or split. A handful per round.
+- **I decide:** each new or changed concept, and any merge or split. A handful per round. Then the list of key papers is updated from the papers each accepted concept rests on (`3-reading/step.md`, *Rules*).
 - **Result:** the concepts and the concept matrix. Then the next snowballing round, until a round adds no new paper.
 
 ## Rules

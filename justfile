@@ -1,4 +1,5 @@
-# Thesis task runner
+# Thesis task runner. The workflow's recipes; this thesis's own recipes go in project.just, which upgrades never touch.
+import? 'project.just'
 
 # Default recipe (runs if you just type 'just')
 default: help

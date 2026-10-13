@@ -32,6 +32,7 @@ Plain meanings of the words the workflow uses. Skills give the meaning of a term
 | Stop rule | Snowballing ends when a round adds no new papers. |
 | Reading record (P) | The notes on one paper: its summary, quality, the facts extracted, and the ideas it covers, each with its page. |
 | Three passes | Reading in up to three depths: a skim, a careful read, a full reconstruction. Most papers stop at the first or second. |
+| Key paper | A paper the argument of the thesis rests on: the main evidence for a question, the source of a claim the gap depends on, the strongest evidence against it, or a seed. I read every key paper in full before the gap is decided. |
 | Citation check | Checking that every claim taken from a paper really is on the page cited. |
 | Concept (C) | An idea several papers talk about. The review is organised by concepts, comparing what each paper says about them. |
 | Concept matrix | A table of papers against concepts, showing who covers what. Empty areas hint at the gap. |

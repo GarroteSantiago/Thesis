@@ -9,12 +9,17 @@
 Each paper let in is read and summarised the same way: what kind of paper it is, how solid it is, the facts the extraction form asks for, and the ideas it covers, all with page numbers. A second helper checks every claim against the page cited.
 
 - **The AI:** reads each paper and writes its reading record; checks its citations.
-- **I decide:** whether each record is faithful to its paper. One decision per paper. The papers my argument rests on I read myself, in full.
+- **I decide:** whether each record is faithful to its paper. One decision per paper. The AI also proposes which papers look *key*, the ones my argument will rest on; I read those in full later, once the argument exists, before the gap is decided.
 - **Result:** one accepted record per paper.
 
 ## Rules
 - Every extracted value and concept has a page.
-- Papers my argument depends on are read in full by me.
+- Papers my argument depends on (key papers) are read in full by me. A paper is key if it passes at least one test:
+  1. **Sole or main evidence:** it is the only paper, or one of very few, answering an SQ.
+  2. **Load-bearing claim:** the problem or the gap rests on a claim it makes.
+  3. **Strongest counter-evidence:** it argues most strongly against step 0.
+  4. **Seed:** it is in `0-start/seeds.md`.
+- Key papers are proposed, with the test each passes, at 3c (provisional); updated at each 4b from the papers each accepted concept rests on; extended at 5c with any paper `5-gap/gap.md` rests on; and read in full by me before the gap gate (5c) is decided. At 3c the argument does not exist yet: it is built at synthesis and at the gap, so which papers it rests on can only be known from the concepts and the gap.
 
 ## Produces
 Template in `ai/template/sls/3-reading/`. Flow rows 3a–3c (`ai/flow-sls.md`).

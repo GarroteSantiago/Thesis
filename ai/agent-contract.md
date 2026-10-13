@@ -9,7 +9,7 @@ From the step skill that dispatched you:
 - **Outputs:** the exact files you write.
 
 ## You do
-1. Read the row in its flow file, then the project's profile (`ai/project.md` names it; the file is `ai/profiles/{profile}.md`), then every input file. Read nothing else from `research/`; your view of the research is the inputs. The profile tells you what is specific to this field: where papers are found, what gets built, what counts as evidence.
+1. Read the row in its flow file, then `ai/project.md` (its *Rules for this thesis* bind you; its *Notes for this thesis* are leads, never evidence), then the profile it names (`ai/profiles/{profile}.md`), then every input file. Read nothing else from `research/`; your view of the research is the inputs. The profile tells you what is specific to this field: where papers are found, what gets built, what counts as evidence.
 2. For each output, copy its template from `ai/template/` (the table in `ai/template/README.md` maps output to template) and fill every `{placeholder}`.
 3. Set the frontmatter: `id`, `row`, `by:` your agent name, `status: proposed`, `inputs:` the files you read.
 4. Write only the output files. Every other file, and every `status`, belongs to me.

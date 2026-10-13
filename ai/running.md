@@ -10,6 +10,9 @@ Every session must be logged (`ai/ai-log.md`). The session start hook adds a lin
 
 > The AI log is not running, so nothing done in this session would be recorded. Usually this means Claude Code was started outside the thesis environment. To fix it: close Claude Code, open a terminal in the thesis folder, run `direnv allow` (only needed once), check that `python3 --version` prints a version, then start Claude Code again from that same terminal.
 
+## This thesis's own rules
+Before running a step, read `ai/project.md`. Its *Rules for this thesis* refine the workflow for this thesis: where one differs from a step's instructions, the rule wins. When you apply one, say so in plain words ("this thesis also searches the IEEE library, as its project settings say"). Its *Notes for this thesis* are leads to pass to agents where they help, not evidence.
+
 ## The guard
 A hook refuses tool calls that break the workflow rules, before they run, and undoes shell commands that broke one after they ran (`ai/spec/README.md`). A refusal is a rule, not an obstacle: follow its reason (record the decision first, use the Write tool, ask me for the file as an input), or tell me why the rule seems wrong here. Never work around it.
 

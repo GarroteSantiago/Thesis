@@ -9,7 +9,7 @@
 Once the search has stopped, we answer each review question from the concepts and name the gap: what no paper covers, or covers only in part. We also record the current solutions, why earlier attempts failed, and what could have biased the review.
 
 - **The AI:** drafts the answers and the gap; the skeptic tests whether the gap is real or only something this review missed.
-- **I decide:** each answer and the gap. The gap is stated in my words. About as many decisions as review questions, plus four.
+- **I decide:** each answer and the gap. The gap is stated in my words. About as many decisions as review questions, plus four. Before the gap is decided, I confirm the final list of key papers and read each one in full (`3-reading/step.md`, *Rules*).
 - **Result:** the gap the thesis aims at.
 
 ## Produces
