@@ -331,10 +331,28 @@ def check_spec(errors):
             errors.append(f"ai/spec/flow.toml: row {rid} is in no flow table")
 
 
+def check_papers(docs, errors):
+    """Every P ID cell of a round file holds an ID or nothing, and every reading record's paper was let in by a round."""
+    for d in docs:
+        if not re.fullmatch(r"sls/2-search/R\d+(-backward|-forward)?(-\d+)?\.md", d.rel):
+            continue
+        for row in tables(d.section("Candidates")):
+            cell = row.get("P ID", "").strip()
+            if cell and not re.fullmatch(r"P\d+|—|-|", cell):
+                ref = row.get("#") or row.get("Reference", "")[:40]
+                errors.append(f"{d.rel}: the P ID column of row {ref} holds text, not an ID: \"{cell[:60]}\". "
+                              "Put the ID back and move the text to the Decision column.")
+    assigned = assigned_papers(docs)
+    for d in docs:
+        if re.fullmatch(r"sls/3-reading/P\d+\.md", d.rel) and d.id not in assigned:
+            errors.append(f"{d.rel}: {d.id} has a reading record but no round file assigns it (sls/2-search/R*.md, P ID column)")
+
+
 def check(_args):
     docs = produced_docs()
     errors = []
     check_spec(errors)
+    check_papers(docs, errors)
     check_status(docs, errors)
     check_complete(docs, errors)
     check_decisions(docs, errors)

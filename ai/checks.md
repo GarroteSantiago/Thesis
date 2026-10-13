@@ -8,6 +8,7 @@ Runs after every gate. Fails if any of these is broken:
 - **Status:** every file's `status` is one of the six in `files.md`.
 - **Traceability:** the linking sections name IDs that exist and are not retired or rejected: O *Traces to* → RQ, H *Tested by* → RQ, D *Feeds* → O and *Artifact layer* → L, E *Question* → RQ, *Objective* → O and *Demonstrations used* → D runs, L *Decisions implemented* → DEC.
 - **ID rule:** compared with the last commit, no file with an ID was removed and no ID changed; it was retired instead (`research/dsrm/README.md`).
+- **Papers:** every P ID cell of a round file holds an ID or nothing, and every reading record's paper was let in by a round.
 - **Stale chapters:** an accepted chapter section whose outline or outline inputs changed after its decision file.
 - **Complete files:** every file matches a template, has every `##` section of it (a source in parentheses after a heading, as in `## Type (Shaw)`, is ignored), and has no `{placeholder}` or `[ ]` left outside code blocks (`files.md`).
 - **Decisions:** every file with a decided status has a decision file targeting it, and every decision targets a file that exists (`ai-log.md`).

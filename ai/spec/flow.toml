@@ -334,6 +334,16 @@ inputs = ["dsrm/6-communicate/*.md"]
 outputs = []
 gate = "Iteration"
 
+# ---------- Repairs ----------
+
+[[row]]
+id = "fix"
+step = "thesis"
+who = "me"
+inputs = ["**"]
+outputs = []
+gate = "Fix"
+
 # ---------- Frozen files ----------
 # Once decided, these files are never edited again, except as named.
 
