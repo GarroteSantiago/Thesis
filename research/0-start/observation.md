@@ -2,7 +2,7 @@
 id: observation
 row: 0
 by: me
-status: provisional
+status: accepted
 inputs: []
 ---
 # Observation

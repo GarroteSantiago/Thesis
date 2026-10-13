@@ -7,7 +7,7 @@ inputs: [sls/1-protocol/SQ*.md]
 ---
 # Data extraction form
 
-Fields filled for every included paper (`sls/3-reading/P{n}.md`). Every SQ is served by at least one field.
+Fields filled for every included paper (`sls/3-reading/P*.md`). Every SQ is served by at least one field.
 
 | Field | What to record | Serves |
 |---|---|---|

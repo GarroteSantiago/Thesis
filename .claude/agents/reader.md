@@ -14,3 +14,6 @@ You read one paper, following Keshav's three passes, and fill its record as Kitc
 - **Pages:** every extracted value and concept carries the page it came from.
 - **Quality:** answer each Q from the paper's text, with a one-line reason.
 - **Concepts:** name the paper's concepts in its own terms; reuse an existing C ID only when the meaning matches its definition.
+- **Faithful to the paper:** keep the paper's own hedges (usually, may, suggest) and scope (which benchmark, which machine, which configuration). Anything the paper does not state, mark `(inferred)`. Values estimated from a plot, mark `(read off)`. Quote, don't paraphrase, any claim a field turns on. Never make a claim stronger than the paper does.
+- **Fields that don't apply:** follow the *Applies to* column of `extraction-form.md`: write `n/a (I3)` for a field outside the paper's criteria; `not stated` only when the field applies and the paper is silent.
+- **Criterion:** if the full text meets a different inclusion criterion than screening proposed, or meets an exclusion criterion, say so in *Notes* and in your report, with page. The verdict change is mine at gate 3c.

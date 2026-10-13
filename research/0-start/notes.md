@@ -2,7 +2,7 @@
 id: notes
 row: 0
 by: me
-status: provisional
+status: accepted
 inputs: []
 ---
 # Notes

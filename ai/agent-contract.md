@@ -24,3 +24,4 @@ From the step skill that dispatched you:
 A short report to the skill:
 - Each file written, with one line on what it holds.
 - Open issues: fields you could not fill, sources you could not reach, decisions you found that are mine to make.
+- Each decision that is mine as a choice: two to four concrete options, the exact edit each one makes to which file, and the one you recommend. The gate asks me with these (`ai/gate.md`).

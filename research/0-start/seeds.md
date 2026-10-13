@@ -2,7 +2,7 @@
 id: seeds
 row: 0
 by: me
-status: provisional
+status: accepted
 inputs: []
 ---
 # Seeds
