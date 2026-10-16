@@ -2,7 +2,7 @@
 id: SQ1
 row: 1a
 by: protocol-critic
-status: accepted
+status: changed
 inputs: [0-start/observation.md]
 ---
 # SQ1
@@ -29,3 +29,5 @@ At least 10 papers serving it are read, in the reading order, then 5 in a row ad
 
 ## Reading order
 Levels alternating (instruction set, hardware or microcode mechanism, kernel), and within each level different groups and decades; full designs with an evaluation before position papers and short IPC notes. Start with the seeds and the system papers most other papers build on: the Intel 432 (P10, then P75), the Message-Driven Processor and the J-Machine (P12, P65), the multikernel (P8), L4 (P46, P48). Then: the Single-chip Cloud Computer (P21), KeyKOS and EROS (P53, P77), the Transputer (P96), Spring (P51), Chorus (P200), the ELXSI System 6400, which added shared memory later (P42), the M-Machine (P66), Alewife (P274), the Lisp Machine (P73), hardware IPC support (P159, P221), object and Java processors (P58, P59, P63), QNX (P276), fos and Helios (P102, P45), the message coprocessor and Sylvan (P152, P250). After these, any paper describing a system of a kind not yet covered. Several papers on one system count as one reading for this question (e.g. the L4 family: P46, P48, P172, P188, P204, P233, P251): only the strongest is read for it.
+
+Papers are grouped by system family (a system and its later versions, e.g. L4: L4, Fiasco, seL4). Per family, read: its foundational paper; its retrospective, if one exists; and a later paper only if its screening suggests it changes this question's answer (a new mechanism, a large change in message cost, an escape route added or removed). Other papers of the family are deferred. Several papers of one family count as one reading. (`changes/2026-10-16-system-families.md`)

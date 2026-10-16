@@ -2,7 +2,7 @@
 id: SQ3
 row: 1a
 by: protocol-critic
-status: accepted
+status: changed
 inputs: [0-start/observation.md]
 ---
 # SQ3
@@ -29,3 +29,5 @@ At least 10 papers serving it are read, in the reading order, then 3 in a row ad
 
 ## Reading order
 The three papers whose screening reason names interposition first: transparent monitors on synchronous IPC (P203), the Publishing recorder of all messages (P278), adaptive monitoring in microkernels (P183). Then kinds of system alternating: capability kernels (P53, P77), port-based kernels (P43, P200, P199), synchronous-IPC kernels (P46, P48), Spring's doors (P51), multiserver systems (P52, P49), and processors whose messages go through ports or names the hardware resolves (P10, P12); different decades within each.
+
+Papers are grouped by system family (a system and its later versions, e.g. L4: L4, Fiasco, seL4). Per family, read: its foundational paper; its retrospective, if one exists; and a later paper only if its screening suggests it changes this question's answer (a new mechanism, a large change in message cost, an escape route added or removed). Other papers of the family are deferred. Several papers of one family count as one reading. (`changes/2026-10-16-system-families.md`)

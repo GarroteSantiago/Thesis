@@ -2,7 +2,7 @@
 id: SQ4
 row: 1a
 by: protocol-critic
-status: accepted
+status: changed
 inputs: [0-start/notes.md]
 ---
 # SQ4
@@ -27,3 +27,5 @@ At least 10 papers serving it are read, in the reading order, then 5 in a row ad
 
 ## Reading order
 Functions and eras alternating, designs with measurements first. Start with the multikernel (P8, replicated state kept by agreement), then capability protection in KeyKOS and EROS (P53, P77), load distribution on microkernels (P167, P194), fos (P102), the Cosmos operating system on the J-Machine (P70), naming in the Lego kernel (P238), Helios (P45), RHODOS process migration (P240), distributed process management on multicores (P230), NLTSS and SHOSHIN (P39, P153), Popcorn Linux (P211, P225), PIKA (P175), StarfishOS (P191), Determinator (P50). Round 0 holds about 22 papers that serve it: 4 name it in their screening reason (P167, P194, P230, P240), the others are multikernel, capability-kernel and distributed message-based operating system papers.
+
+Papers are grouped by system family (a system and its later versions, e.g. L4: L4, Fiasco, seL4). Per family, read: its foundational paper; its retrospective, if one exists; and a later paper only if its screening suggests it changes this question's answer (a new mechanism, a large change in message cost, an escape route added or removed). Other papers of the family are deferred. Several papers of one family count as one reading. (`changes/2026-10-16-system-families.md`)

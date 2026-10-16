@@ -21,7 +21,10 @@ Not checked yet: to check before writing chapters.
 ## Rules for this thesis
 Rules that refine the workflow for this thesis only, each with where it was decided (a protocol change, a decision file). Every skill and agent reads them; where one differs from a step's own instructions, the rule here wins, and the skill says so when it applies it (`ai/running.md`).
 
-None. The key-papers rule (`research/sls/1-protocol/changes/2026-10-12-key-papers.md`) is now the workflow's own (`research/sls/3-reading/step.md`, *Rules*).
+The key-papers rule (`research/sls/1-protocol/changes/2026-10-12-key-papers.md`) is now the workflow's own (`research/sls/3-reading/step.md`, *Rules*).
+
+- **System families (SQ1–SQ5).** Papers are grouped by system family (a system and its later versions, e.g. L4: L4, Fiasco, seL4). Per family, read its foundational paper, its retrospective if one exists, and a later paper only if its screening suggests it changes the question's answer (a new mechanism, a large change in message cost, an escape route added or removed). Other papers of the family are deferred; several papers of one family count as one reading. Source: `research/sls/1-protocol/changes/2026-10-16-system-families.md`.
+- **Quick check of doubtful round-0 papers.** Papers included in round 0 with "full text decides" that have no reading record are re-screened against the criteria as changed on 2026-10-16, from abstract, introduction and conclusion, in one pass with the re-screen of the papers included under I4 (`changes/2026-10-16-i4-premise.md`). Verdicts are decided at a screening gate; papers already read keep their full-text verdict. Source: `research/sls/1-protocol/changes/2026-10-16-quick-check.md`.
 
 ## Notes for this thesis
 Leads from the FAQs of the first workflow version, never verified: agents may use them as leads, never as evidence.

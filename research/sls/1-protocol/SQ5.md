@@ -2,7 +2,7 @@
 id: SQ5
 row: 1a
 by: protocol-critic
-status: accepted
+status: changed
 inputs: [0-start/notes.md]
 ---
 # SQ5
@@ -27,3 +27,5 @@ At least 10 papers serving it are read, in the reading order, then 5 in a row ad
 
 ## Reading order
 Processors and kernels alternating, designers and third parties alternating, measured evaluations first. Start with the Intel 432 evaluations (P10, then the independent P29), the SOAR results (P13, P11), the J-Machine evaluation (P65), L4 IPC (P46, P172), then the argument that IPC cost is becoming irrelevant (P209), Active Messages' evaluation of message-driven machines (P33), the cache effects of microkernel structure (P202), measurements of message-based operating systems (P218, P243), the PEACE kernel on MANNA (P88), the Single-chip Cloud Computer (P21, P104), the multikernel's scaling (P8), hardware IPC support (P159, P221), Lisp machines (P15), and the books on high-level-language and object machines (P1, P76). Round 0 holds about 45 papers that serve it: the 13 included through I2, and about 30 processor and kernel papers whose screening reason names measured IPC or message cost or this question.
+
+Papers are grouped by system family (a system and its later versions, e.g. L4: L4, Fiasco, seL4). Per family, read: its foundational paper; its retrospective, if one exists; and a later paper only if its screening suggests it changes this question's answer (a new mechanism, a large change in message cost, an escape route added or removed). Other papers of the family are deferred. Several papers of one family count as one reading. (`changes/2026-10-16-system-families.md`)

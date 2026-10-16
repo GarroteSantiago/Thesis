@@ -2,7 +2,7 @@
 id: SQ2
 row: 1a
 by: protocol-critic
-status: accepted
+status: changed
 inputs: [0-start/observation.md]
 ---
 # SQ2
@@ -29,3 +29,5 @@ At least 10 papers serving it are read, in the reading order, then 5 in a row ad
 
 ## Reading order
 Papers whose screening reason names an escape route first: the ELXSI System 6400 adding shared memory (P42), shared queues between host and message coprocessor (P152), messaging and interrupt mechanisms of a microkernel (P156), in-kernel synchronisation in a scalable microkernel (P178), signals and shared memory between cores (P207), servers moved into the Mach kernel (P249), and twenty years of L4 lessons (P48). Then processors (P10, P12 or P65, P21 or P104, P66, P73) alternating with kernels (P8, P53, P77, P51, P200), across decades. Design retrospectives and lessons-learned papers before papers on a single mechanism.
+
+Papers are grouped by system family (a system and its later versions, e.g. L4: L4, Fiasco, seL4). Per family, read: its foundational paper; its retrospective, if one exists; and a later paper only if its screening suggests it changes this question's answer (a new mechanism, a large change in message cost, an escape route added or removed). Other papers of the family are deferred. Several papers of one family count as one reading. (`changes/2026-10-16-system-families.md`)
